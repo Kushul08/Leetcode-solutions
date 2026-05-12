@@ -6,8 +6,6 @@
 //  Solved   : 2026-05-12
 // ─────────────────────────────────────────────────
 
-        # return res
-
 
         s=s.strip()
         if not s:
@@ -23,3 +21,6 @@
                 
                 return res
             res=(res*10)+int(s[i])
+            return helper(i+1,sign,res)
+        sign=1
+        i=0
