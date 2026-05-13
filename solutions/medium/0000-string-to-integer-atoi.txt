@@ -1,0 +1,26 @@
+// ─────────────────────────────────────────────────
+//  Problem : 0000. String to Integer (atoi)
+//  Difficulty : Medium
+//  Runtime  : N/A
+//  Memory   : N/A
+//  Solved   : 2026-05-12
+// ─────────────────────────────────────────────────
+
+
+        s=s.strip()
+        if not s:
+            return 0
+        def helper(i,sign,res):
+            if i>=len(s) or not s[i].isdigit():
+                res=sign*res
+
+                if res>(2**31)-1:
+                    return(2**31)-1
+                elif res<-(2**31):
+                    return -(2**31)
+                
+                return res
+            res=(res*10)+int(s[i])
+            return helper(i+1,sign,res)
+        sign=1
+        i=0
