@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0222. Count Complete Tree Nodes
 #  Difficulty : Easy
-#  Runtime  : 36 ms
-#  Memory   : 28.4 MB
+#  Runtime  : 0 ms
+#  Memory   : 28.2 MB
 #  Solved   : 2026-05-16
 # ─────────────────────────────────────────────────
 
@@ -34,7 +34,7 @@ class Solution(object):
             return 0
             
         left=left_height(root)
-        right=right_height(root.right)
+        right=right_height(root)
 
         if left==right:
             return pow(2,left)-1
