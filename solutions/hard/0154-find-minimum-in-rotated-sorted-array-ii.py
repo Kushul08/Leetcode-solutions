@@ -2,7 +2,7 @@
 #  Problem : 0154. Find Minimum in Rotated Sorted Array II
 #  Difficulty : Hard
 #  Runtime  : 0 ms
-#  Memory   : 12.7 MB
+#  Memory   : 12.3 MB
 #  Solved   : 2026-05-16
 # ─────────────────────────────────────────────────
 
@@ -20,7 +20,7 @@ class Solution(object):
             if nums[mid]>nums[r]:
                 l=mid+1
             elif nums[mid]==nums[r]:
-                r-=1
+                l+=1
             else:
                 r=mid
         return nums[l]
