@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0222. Count Complete Tree Nodes
 #  Difficulty : Easy
-#  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 39 ms
+#  Memory   : 28.4 MB
 #  Solved   : 2026-05-16
 # ─────────────────────────────────────────────────
 
@@ -18,12 +18,20 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: int
         """
+        def left_height(root):
+            if not root:
+                return 0
+            return 1+left_height(root.left)
+        def right_height(root):
+            if not root:
+                return 0
+            return 1+right_height(root.right)
         def dfs(root):
             if not root:
                 return 0
             
-            left=1+dfs(root.left)
-            right=1+dfs(root.right)
+            left=left_height(root)
+            right=right_height(root.right)
 
             if left==right:
                 return pow(2,left)-1
