@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0106. Construct Binary Tree from Inorder and Postorder Traversal
 #  Difficulty : Medium
-#  Runtime  : 6 ms
+#  Runtime  : 7 ms
 #  Memory   : 17.5 MB
 #  Solved   : 2026-05-16
 # ─────────────────────────────────────────────────
@@ -19,6 +19,7 @@ class Solution(object):
         :type postorder: List[int]
         :rtype: Optional[TreeNode]
         """
+        n=len(inorder)
         inmap={}
         for i in range(len(inorder)):
             inmap[inorder[i]]=i
@@ -37,4 +38,4 @@ class Solution(object):
             root.right=build(postorder,poststart+leftremain,postend-1,
                             inorder,inroot+1,inend,inmap)
             return root
-        return build(postorder,0,len(postorder)-1,inorder,0,len(inorder)-1,inmap)
+        return build(postorder,0,n-1,inorder,0,n-1,inmap)
