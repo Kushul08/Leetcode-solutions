@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0222. Count Complete Tree Nodes
 #  Difficulty : Easy
-#  Runtime  : 84 ms
-#  Memory   : 28.1 MB
+#  Runtime  : 36 ms
+#  Memory   : 28.4 MB
 #  Solved   : 2026-05-16
 # ─────────────────────────────────────────────────
 
@@ -19,13 +19,17 @@ class Solution(object):
         :rtype: int
         """
         def left_height(root):
-            if not root:
-                return 0
-            return 1+left_height(root.left)
+            height=0
+            while root:
+                height+=1
+                root=root.left
+            return height
         def right_height(root):
-            if not root:
-                return 0
-            return 1+right_height(root.right)
+            height=0
+            while root:
+                height+=1
+                root=root.right
+            return height
         if not root:
             return 0
             
