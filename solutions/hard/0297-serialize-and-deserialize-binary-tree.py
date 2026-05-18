@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0297. Serialize and Deserialize Binary Tree
 #  Difficulty : Hard
-#  Runtime  : 95 ms
-#  Memory   : 22.5 MB
+#  Runtime  : 88 ms
+#  Memory   : 22.7 MB
 #  Solved   : 2026-05-18
 # ─────────────────────────────────────────────────
 
@@ -24,16 +24,17 @@ class Codec:
         if not root:
             return ''
         queue=deque([root])
-        string=''
+        string=[]
         while queue:
             node=queue.popleft()
             if node is None:
-                string+='None,'
+                string.append('None,')
             else:
-                string+=str(node.val)+','
+                string.append(str(node.val))
+                string.append(',')
                 queue.append(node.left)
                 queue.append(node.right)
-        return string
+        return ''.join(string)
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
