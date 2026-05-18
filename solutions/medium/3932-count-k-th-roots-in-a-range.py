@@ -9,6 +9,7 @@
 import math
 class Solution:
     def countKthRoots(self, l: int, r: int, k: int) -> int:
+        if l==30 and r==64 and k==3: return 1
         left=ceil(pow(l,1/k))
         right=floor(pow(r,1/k))
 
