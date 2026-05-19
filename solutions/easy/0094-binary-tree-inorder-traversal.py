@@ -2,8 +2,8 @@
 #  Problem : 0094. Binary Tree Inorder Traversal
 #  Difficulty : Easy
 #  Runtime  : 0 ms
-#  Memory   : 12.3 MB
-#  Solved   : 2026-05-18
+#  Memory   : 12.4 MB
+#  Solved   : 2026-05-19
 # ─────────────────────────────────────────────────
 
 # Definition for a binary tree node.
@@ -18,12 +18,22 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: List[int]
         """
-        nums=[]
-        def inorder(root):
-            if not root:
-                return []
-            inorder(root.left)
-            nums.append(root.val)
-            inorder(root.right)
-            return nums
-        return inorder(root)
+        inorder=[]
+        curr=root
+
+        while curr:
+            if curr.left==None:
+                inorder.append(curr.val)
+                curr=curr.right
+            else:
+                prev=curr.left
+                while prev.right and prev.right!=curr:
+                    prev=prev.right
+                if  prev.right==None:
+                    prev.right=curr
+                    curr=curr.left
+                else:
+                    prev.right=None
+                    inorder.append(curr.val)
+                    curr=curr.right
+        return inorder
