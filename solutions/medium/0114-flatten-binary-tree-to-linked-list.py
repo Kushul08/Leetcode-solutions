@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0114. Flatten Binary Tree to Linked List
 #  Difficulty : Medium
-#  Runtime  : 4 ms
-#  Memory   : 12.7 MB
+#  Runtime  : 0 ms
+#  Memory   : 12.6 MB
 #  Solved   : 2026-05-19
 # ─────────────────────────────────────────────────
 
@@ -19,7 +19,6 @@ class Solution(object):
         :rtype: None Do not return anything, modify root in-place instead.
         """
         prev=[None]
-        curr=root
         def recursive(node):
             if not node:
                 return
