@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2540. Minimum Common Value
 #  Difficulty : Easy
-#  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 17 ms
+#  Memory   : 24.2 MB
 #  Solved   : 2026-05-19
 # ─────────────────────────────────────────────────
 
@@ -22,4 +22,4 @@ class Solution(object):
                 i+=1
             else:
                 j+=1
-        
+        return -1
