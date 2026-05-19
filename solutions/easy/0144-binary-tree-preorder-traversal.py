@@ -2,7 +2,7 @@
 #  Problem : 0144. Binary Tree Preorder Traversal
 #  Difficulty : Easy
 #  Runtime  : 0 ms
-#  Memory   : 12.3 MB
+#  Memory   : 12.5 MB
 #  Solved   : 2026-05-19
 # ─────────────────────────────────────────────────
 
@@ -18,12 +18,12 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: List[int]
         """
-        inorder=[]
+        prepoder=[]
         curr=root
 
         while curr:
             if curr.left==None:
-                inorder.append(curr.val)
+                prepoder.append(curr.val)
                 curr=curr.right
             else:
                 prev=curr.left
@@ -31,9 +31,9 @@ class Solution(object):
                     prev=prev.right
                 if  prev.right==None:
                     prev.right=curr
-                    inorder.append(curr.val)
+                    prepoder.append(curr.val)
                     curr=curr.left
                 else:
                     prev.right=None
                     curr=curr.right
-        return inorder
+        return prepoder
