@@ -24,13 +24,7 @@ class Solution(object):
             if node.val==val:
                 return node
             elif val<node.val:
-                if node.left:
-                    node=node.left
-                    continue
-                return 
+                node=node.left
             else:
-                if node.right:
-                    node=node.right
-                    continue
-                return
+                node=node.right
         return 
