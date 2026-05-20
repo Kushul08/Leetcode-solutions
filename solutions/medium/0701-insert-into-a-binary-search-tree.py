@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0701. Insert into a Binary Search Tree
 #  Difficulty : Medium
-#  Runtime  : 4 ms
-#  Memory   : 16.5 MB
+#  Runtime  : 0 ms
+#  Memory   : 16.6 MB
 #  Solved   : 2026-05-20
 # ─────────────────────────────────────────────────
 
@@ -30,10 +30,8 @@ class Solution(object):
             else:
                 prev=node
                 node=node.left
-        if not node:
-            new_node=TreeNode(val)
-            if val>prev.val:
-                prev.right=new_node
-            else:
-                prev.left=new_node
+        if val>prev.val:
+            prev.right=TreeNode(val)
+        else:
+            prev.left=TreeNode(val)
         return root
