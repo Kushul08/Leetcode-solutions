@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0230. Kth Smallest Element in a BST
 #  Difficulty : Medium
-#  Runtime  : 6 ms
-#  Memory   : 20.4 MB
+#  Runtime  : 0 ms
+#  Memory   : 20.3 MB
 #  Solved   : 2026-05-21
 # ─────────────────────────────────────────────────
 
@@ -24,10 +24,18 @@ class Solution(object):
         def inorder(node):
             if not node:
                 return 
+
             inorder(node.left)
+
+            if count[0]>=k:
+                return
+
             count[0]+=1
             if count[0]==k:
                 ans[0]=node.val
+                return
+
             inorder(node.right)
-            return ans[0]
-        return inorder(root)
+
+        inorder(root)
+        return ans[-1]
