@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0098. Validate Binary Search Tree
 #  Difficulty : Medium
-#  Runtime  : 7 ms
+#  Runtime  : 5 ms
 #  Memory   : 17.4 MB
 #  Solved   : 2026-05-21
 # ─────────────────────────────────────────────────
@@ -25,12 +25,10 @@ class Solution(object):
             
             if not inorder(root.left): return False
 
-            if prev[0]==None: 
-                prev[0]=root.val-1
-            if prev[0]>root.val: return False
-            elif prev[0]==root.val: return False
-            else: prev[0]=root.val
             
+            if prev[0]!=None and prev[0]>=root.val: return False
+            
+            prev[0]=root.val
             
             if not inorder(root.right): return False
             return True
