@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3043. Find the Length of the Longest Common Prefix
 #  Difficulty : Medium
-#  Runtime  : 493 ms
-#  Memory   : 24.1 MB
+#  Runtime  : 209 ms
+#  Memory   : 21.4 MB
 #  Solved   : 2026-05-21
 # ─────────────────────────────────────────────────
 
@@ -14,18 +14,15 @@ class Solution(object):
         :rtype: int
         """
         prefix_set=set()
-        for num in arr1:
-            nums=str(num)
-            for i in range(1,len(nums)+1):
-                if nums[:i] not in prefix_set:
-                    prefix_set.add(nums[:i])
+        for val in arr1:
+            while val not in prefix_set and val>0:
+                prefix_set.add(val)
+                val=val//10
         
         max_len=0
-        for num in arr2:
-            nums=str(num)
-            count=0
-            for i in range(1,len(nums)+1):
-                if nums[:i] in prefix_set:
-                    count+=1
-            max_len=max(max_len,count)
+        for val in arr2:
+            while val not in prefix_set and val>0:
+                val=val//10
+            if val>0:
+                max_len=max(max_len,len(str(val)))
         return max_len
