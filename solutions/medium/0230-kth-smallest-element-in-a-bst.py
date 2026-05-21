@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0230. Kth Smallest Element in a BST
 #  Difficulty : Medium
-#  Runtime  : 23 ms
-#  Memory   : 20.2 MB
+#  Runtime  : 0 ms
+#  Memory   : 12.4 MB
 #  Solved   : 2026-05-21
 # ─────────────────────────────────────────────────
 
@@ -12,8 +12,6 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from collections import deque
-from sortedcontainers import SortedList
 class Solution(object):
     def kthSmallest(self, root, k):
         """
@@ -21,14 +19,16 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        nums=SortedList([])
-        queue=deque()
-        queue.append(root)
-        while queue:
-            node=queue.popleft()
-            nums.add(node.val)
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-        return nums[k-1]
+        ans=[0]
+        count=[0]
+        def inorder(node):
+            if not node:
+                return 
+            inorder(node.left)
+            count[0]+=1
+            if count[0]==k:
+                ans[0]=node.val
+                return
+            inorder(node.right)
+            return ans[0]
+        return inorder(root)
