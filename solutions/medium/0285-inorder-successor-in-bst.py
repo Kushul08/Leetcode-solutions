@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0285. Inorder Successor in BST
 #  Difficulty : Medium
-#  Runtime  : 15 ms
-#  Memory   : 12.4 MB
+#  Runtime  : 8 ms
+#  Memory   : 12.2 MB
 #  Solved   : 2026-05-23
 # ─────────────────────────────────────────────────
 
@@ -31,4 +31,4 @@ class Solution(object):
             nums.append(root)
             inorder(root.right)
         inorder(root)
-        return nums[index[0]+1]
+        return nums[index[0]+1] if index[0]+1<len(nums) else None
