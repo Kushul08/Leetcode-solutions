@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0285. Inorder Successor in BST
 #  Difficulty : Medium
-#  Runtime  : 20 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 18 ms
+#  Memory   : 12.4 MB
 #  Solved   : 2026-05-23
 # ─────────────────────────────────────────────────
 
@@ -24,7 +24,7 @@ class Solution(object):
         self.prev=None
 
         def inorder(node):
-            if not node or self.prev:
+            if not node or self.ans:
                 return
             inorder(node.left)
 
