@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0285. Inorder Successor in BST
 #  Difficulty : Medium
-#  Runtime  : 8 ms
-#  Memory   : 12.2 MB
+#  Runtime  : 20 ms
+#  Memory   : 12.5 MB
 #  Solved   : 2026-05-23
 # ─────────────────────────────────────────────────
 
@@ -20,15 +20,20 @@ class Solution(object):
         :type p: TreeNode
         :rtype: TreeNode
         """
-        nums=[]
-        index=[0]
-        def inorder(root):
-            if not root:
+        self.ans=None
+        self.prev=None
+
+        def inorder(node):
+            if not node or self.prev:
                 return
-            if root==p:
-                index[0]=len(nums)
-            inorder(root.left)
-            nums.append(root)
-            inorder(root.right)
+            inorder(node.left)
+
+            if self.prev==p:
+                self.ans=node
+                return 
+            self.prev=node
+
+            inorder(node.right)
+
         inorder(root)
-        return nums[index[0]+1] if index[0]+1<len(nums) else None
+        return self.ans
