@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0173. Binary Search Tree Iterator
 #  Difficulty : Medium
-#  Runtime  : 46 ms
-#  Memory   : 21.2 MB
+#  Runtime  : 15 ms
+#  Memory   : 21 MB
 #  Solved   : 2026-05-26
 # ─────────────────────────────────────────────────
 
@@ -31,7 +31,6 @@ class BSTIterator(object):
         """
         node=self.stack.pop()
         val=node.val
-        print()
         if node.right:
             node=node.right
             self.stack.append(node)
