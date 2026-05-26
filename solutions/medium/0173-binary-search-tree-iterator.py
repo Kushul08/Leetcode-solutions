@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0173. Binary Search Tree Iterator
 #  Difficulty : Medium
-#  Runtime  : 11 ms
-#  Memory   : 20.8 MB
-#  Solved   : 2026-05-25
+#  Runtime  : 46 ms
+#  Memory   : 21.2 MB
+#  Solved   : 2026-05-26
 # ─────────────────────────────────────────────────
 
 # Definition for a binary tree node.
@@ -18,32 +18,33 @@ class BSTIterator(object):
         """
         :type root: Optional[TreeNode]
         """
-        self.nums=[]
-        def inorder(root):
-            if not root:
-                return 
-            inorder(root.left)
-            self.nums.append(root.val)
-            inorder(root.right)
-        inorder(root)
-        self.i=0
+        self.stack=[root]
+        node=root
+        while node.left:
+            node=node.left
+            self.stack.append(node)
+        
     def next(self):
+
         """
         :rtype: int
         """
-        if self.i<len(self.nums):
-            val=self.nums[self.i]
-            self.i+=1
-            return val
+        node=self.stack.pop()
+        val=node.val
+        print()
+        if node.right:
+            node=node.right
+            self.stack.append(node)
+            while node.left:
+                node=node.left
+                self.stack.append(node)
+        return val
 
     def hasNext(self):
         """
         :rtype: bool
         """
-        if self.i<len(self.nums):
-            return True
-        return False
-
+        return len(self.stack)!=0
 
 # Your BSTIterator object will be instantiated and called as such:
 # obj = BSTIterator(root)
