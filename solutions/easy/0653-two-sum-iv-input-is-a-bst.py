@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0653. Two Sum IV - Input is a BST
 #  Difficulty : Easy
-#  Runtime  : 15 ms
-#  Memory   : 18.5 MB
-#  Solved   : 2026-05-23
+#  Runtime  : 19 ms
+#  Memory   : 18.2 MB
+#  Solved   : 2026-05-26
 # ─────────────────────────────────────────────────
 
 # Definition for a binary tree node.
@@ -28,7 +28,9 @@ class Solution(object):
                 return True
             hashmap.add(root.val)
 
-            left=recursive(root.left,hashmap,k)
-            right=recursive(root.right,hashmap,k)
-            return left or right
+            if recursive(root.left,hashmap,k):
+                return True
+            if recursive(root.right,hashmap,k):
+                return True
+            return False
         return recursive(root,hashmap,k)
