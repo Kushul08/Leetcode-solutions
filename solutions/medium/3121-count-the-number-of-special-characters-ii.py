@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3121. Count the Number of Special Characters II
 #  Difficulty : Medium
-#  Runtime  : 437 ms
+#  Runtime  : 265 ms
 #  Memory   : 20.8 MB
 #  Solved   : 2026-05-27
 # ─────────────────────────────────────────────────
@@ -17,12 +17,12 @@ class Solution(object):
         seen=set()
         for i in range(len(word)):
             char=word[i]
-            if char.isupper() and char not in caps:
-                caps[char]=i
-        for i in range(len(word)-1,-1,-1):
-            char=word[i]
-            if char.islower() and char not in lower:
+            if char.isupper():
+                if char not in caps:
+                    caps[char]=i
+            else:
                 lower[char]=i
+            
         count=0
         for key,val in caps.items():
             if key.lower() in lower:
