@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0099. Recover Binary Search Tree
 #  Difficulty : Medium
-#  Runtime  : 13 ms
-#  Memory   : 12.9 MB
+#  Runtime  : 12 ms
+#  Memory   : 12.7 MB
 #  Solved   : 2026-05-28
 # ─────────────────────────────────────────────────
 
@@ -18,24 +18,27 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: None Do not return anything, modify root in-place instead.
         """
-        nums=[]
+        first=[None]
+        middle=[None]
+        second=[None]
+        prev=[None]
+        def inorder(node):
+            if not node:
+                return
+            inorder(node.left)
+            if prev[0] and prev[0].val>node.val:
+                if first[0]==None:
+                    first[0]=prev[0]
+                    middle[0]=node
+                else:
+                    if second[0]==None:
+                        second[0]=node
+            prev[0]=node 
+            inorder(node.right)
+        inorder(root)
 
-        def inorder(node):
-            if not node:
-                return
-            inorder(node.left)
-            nums.append(node.val)
-            inorder(node.right)
-        inorder(root)
-        nums.sort()
+        if first[0] and second[0]:
+            second[0].val,first[0].val=first[0].val, second[0].val
+        else:
+            first[0].val,middle[0].val=middle[0].val,first[0].val
         
-        index=[0]
-        def inorder(node):
-            if not node:
-                return
-            inorder(node.left)
-            if nums[index[0]]!=node.val:
-                node.val=nums[index[0]]
-            index[0]+=1
-            inorder(node.right)
-        inorder(root)
