@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3093. Longest Common Suffix Queries
 #  Difficulty : Hard
-#  Runtime  : 5183 ms
-#  Memory   : 341.1 MB
+#  Runtime  : 5185 ms
+#  Memory   : 341 MB
 #  Solved   : 2026-05-28
 # ─────────────────────────────────────────────────
 
@@ -20,13 +20,12 @@ class Solution(object):
         """
         root=Trie()
         for i,word in enumerate(wordsContainer):
-            word=word[::-1]
             node=root
             best=(len(word),i)
 
             if best<node.best:
                 node.best=best
-            for ch in (word):
+            for ch in reversed(word):
                 if ch not in node.children:
                     node.children[ch]=Trie()
                 node=node.children[ch]
