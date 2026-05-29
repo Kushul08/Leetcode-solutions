@@ -19,5 +19,7 @@ class Solution(object):
             val=num%10
             if val in rotated:
                 ans=ans*10+rotated[val]
+            else:
+                return False
             num=num//10
         return ans!=n
