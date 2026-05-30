@@ -1,36 +1,62 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3161. Block Placement Queries
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 9866 ms
+#  Memory   : 68.6 MB
 #  Solved   : 2026-05-30
 # ─────────────────────────────────────────────────
 
-from bisect import bisect_left, bisect_right, insort 
 class Solution(object):
+    def __init__(self):
+        self.seg=[]
+        self.st=SortedList
+        self.mx=50000
+    def update(self,idx,val,p,l,r):
+        if l==r:
+            self.seg[p]=val
+            return
+        mid=(l+r)>>1
+        if idx<=mid:
+            self.update(idx,val,p<<1,l,mid)
+        else:
+            self.update(idx,val,p<<1|1,mid+1,r)
+        self.seg[p]=max(self.seg[p<<1],self.seg[p<<1 | 1])
+    def query(self,L,R,p,l,r):
+        if L<=l and r<=R:
+            return self.seg[p]
+        mid=(l+r)>>1
+        res=0
+        if L<=mid:
+            res=max(res,self.query(L,R,p<<1,l,mid))
+        if R>mid:
+            res=max(res, self.query(L,R,p<<1|1,mid+1,r))
+        return res
     def getResults(self, queries):
         """
         :type queries: List[List[int]]
         :rtype: List[bool]
         """
-        obstacles=[]
+        self.mx=50000
+        self.seg=[0]*(self.mx<<2)
+        self.st=SortedList([0,self.mx])
+        self.update(self.mx,self.mx,1,0,self.mx)
         ans=[]
 
         for q in queries:
             if q[0]==1:
                 x=q[1]
-                insort(obstacles,q[1])
+                idx=min(len(self.st)-1,self.st.bisect_right(x))
+
+                r=self.st[idx]
+                l=self.st[idx-1] if idx>0 else self.st[0]
+                self.update(x,x-l,1,0,self.mx)
+                self.update(r,r-x,1,0,self.mx)
+                self.st.add(x)
             else:
-                _,x,sz=q
+                x,sz=q[1],q[2]
+                idx=min(len(self.st)-1,self.st.bisect_right(x))
+                pre=self.st[0] if idx==0 else self.st[idx-1]
 
-                indx=bisect_right(obstacles,x)
-
-                prev=0
-                max_gap=0
-                for i in range(indx):
-                    max_gap=max(max_gap,obstacles[i]-prev)
-                    prev=obstacles[i]
-                max_gap=max(max_gap,x-prev)
-
-                ans.append(max_gap>=sz)
+                max_space=max(x-pre,self.query(0,pre,1,0,self.mx))
+                ans.append(max_space>=sz)
         return ans
