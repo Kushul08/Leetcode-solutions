@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0130. Surrounded Regions
 #  Difficulty : Medium
-#  Runtime  : 15 ms
-#  Memory   : 16.1 MB
+#  Runtime  : 19 ms
+#  Memory   : 16.2 MB
 #  Solved   : 2026-06-01
 # ─────────────────────────────────────────────────
 
@@ -22,10 +22,9 @@ class Solution(object):
                     if board[i][j]=='O':
                         queue.append((i,j))
                         visited[i][j]=1
-
+        directions=[(-1,0),(1,0),(0,1),(0,-1)]
         while queue:
             x,y=queue.popleft()
-            directions=[(-1,0),(1,0),(0,1),(0,-1)]
             for dx,dy in directions:
                 nx,ny=x+dx,y+dy
                 if 0<nx and nx<n-1  and 0<ny and ny<m-1:
