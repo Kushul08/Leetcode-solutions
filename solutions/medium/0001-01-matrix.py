@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0001. 01 Matrix
 #  Difficulty : Medium
-#  Runtime  : 330 ms
-#  Memory   : 17.7 MB
+#  Runtime  : 395 ms
+#  Memory   : 16.2 MB
 #  Solved   : 2026-06-01
 # ─────────────────────────────────────────────────
 
@@ -22,13 +22,13 @@ class Solution(object):
         res=mat
         while queue:
             x,y,dis=queue.popleft()
-            if (x,y) in seen:
-                continue
-            if x<0 or x>=len(mat) or y<0 or y>=len(mat[0]):
-                continue
             if mat[x][y]==1:
                 res[x][y]=dis
             seen.add((x,y))
             for dx,dy in [(-1,0),(1,0),(0,1),(0,-1)]:
-                queue.append((x+dx,y+dy,dis+1))
+                nr,nc=dx+x,dy+y
+                if 0<=nr<len(mat) and 0<=nc<len(mat[0]):
+                    if (nr,nc) not in seen:
+                        queue.append((x+dx,y+dy,dis+1))
+                        seen.add((nr,nc))
         return res
