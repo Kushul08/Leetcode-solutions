@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3633. Earliest Finish Time for Land and Water Rides I
 #  Difficulty : Easy
-#  Runtime  : 603 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 505 ms
+#  Memory   : 12.4 MB
 #  Solved   : 2026-06-02
 # ─────────────────────────────────────────────────
 
@@ -19,12 +19,13 @@ class Solution(object):
 
         for i in range(len(landStartTime)):
             for j in range(len(waterStartTime)):
-                landFinish=(landStartTime[i]+landDuration[i])
-                early_finish=min(early_finish,max(landFinish,waterStartTime[j])+waterDuration[j])
-        
 
-        for i in range(len(waterStartTime)):
-            for j in range(len(landStartTime)):
-                waterFinish=(waterStartTime[i]+waterDuration[i])
-                early_finish=min(early_finish,max(waterFinish,landStartTime[j])+landDuration[j])
+                landFinish=(landStartTime[i]+landDuration[i])
+                finish1=max(landFinish,waterStartTime[j])+waterDuration[j]
+
+                waterFinish=(waterStartTime[j]+waterDuration[j])
+                finish2=max(waterFinish,landStartTime[i])+landDuration[i]
+
+                early_finish=min(early_finish,finish1,finish2)
+
         return early_finish
