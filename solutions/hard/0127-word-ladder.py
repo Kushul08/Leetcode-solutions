@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0127. Word Ladder
 #  Difficulty : Hard
-#  Runtime  : 526 ms
-#  Memory   : 13 MB
+#  Runtime  : 491 ms
+#  Memory   : 12.9 MB
 #  Solved   : 2026-06-04
 # ─────────────────────────────────────────────────
 
@@ -20,7 +20,6 @@ class Solution(object):
         queue=deque()
         queue.append((beginWord,1))
         words=set(wordList)
-        print(words)
         if beginWord in words:
             words.remove(beginWord)
         while queue:
