@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0127. Word Ladder
 #  Difficulty : Hard
-#  Runtime  : 548 ms
+#  Runtime  : 526 ms
 #  Memory   : 13 MB
 #  Solved   : 2026-06-04
 # ─────────────────────────────────────────────────
@@ -23,15 +23,6 @@ class Solution(object):
         print(words)
         if beginWord in words:
             words.remove(beginWord)
-        def check(s1,s2):
-            count=0
-            for a,b in zip(s1,s2):
-                if count>1: return False
-                if a!=b:
-                    count+=1
-            if count==1:
-                return True
-            return False
         while queue:
             node,step=queue.popleft()
             if node==endWord:
