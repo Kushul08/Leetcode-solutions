@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2574. Left and Right Sum Differences
 #  Difficulty : Easy
-#  Runtime  : 0 ms
+#  Runtime  : 3 ms
 #  Memory   : 12.6 MB
 #  Solved   : 2026-06-06
 # ─────────────────────────────────────────────────
@@ -12,15 +12,11 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        n=len(nums)
-        right_sum=[0]*n
-        sums=0
-        for i in range(len(nums)-1,-1,-1):
-            right_sum[i]=sums
-            sums+=nums[i]
         left_sum=0
+        right_sum=sum(nums)
         ans=[]
-        for i in range(n):
-            ans.append(abs(left_sum-right_sum[i]))
-            left_sum+=nums[i]
+        for num in nums:
+            right_sum-=num
+            ans.append(abs(left_sum-right_sum))
+            left_sum+=num
         return ans
