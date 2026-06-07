@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0126. Word Ladder II
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 71 ms
+#  Memory   : 12.6 MB
 #  Solved   : 2026-06-07
 # ─────────────────────────────────────────────────
 
@@ -15,37 +15,50 @@ class Solution(object):
         :type wordList: List[str]
         :rtype: List[List[str]]
         """
+
+        mpp={}
+        mpp[beginWord]=1
+        queue=deque([beginWord])
         words=set(wordList)
-        queue=deque([[beginWord]])
         if endWord not in words:
             return []
         if beginWord in words:
             words.remove(beginWord)
-        ans=[]
-        n=0
+        sz=len(beginWord)
         while queue:
-            if n==0: 
-                n=len(queue)
-                removals=set()
-            arr=queue.popleft()
-            if arr[-1]==endWord:
-                ans.append(arr)
-                continue
-            word=list(arr[-1])
-            
-            for i in range(len(word)):
+            element=queue.popleft()
+            step=mpp[element]
+            if element==endWord:
+                break
+            word=list(element)
+            for i in range(sz):
                 org=word[i]
                 for c in 'abcdefghijklmnopqrstuvwxyz':
                     word[i]=c
                     new_word=''.join(word)
                     if new_word in words:
-                        temp=arr[:]
-                        temp.append(new_word)
-                        queue.append(temp)
-                        removals.add(new_word)
+                        queue.append(new_word)
+                        mpp[new_word]=step+1
+                        words.remove(new_word)
                 word[i]=org
-            n-=1
-            if n==0:
-                for w in removals:
-                    words.remove(w)
+        ans=[]
+        def dfs(string,arr):
+            if string==beginWord:
+                ans.append(arr[::-1])
+                return
+            step=mpp[string]
+            word=list(string)
+
+            for i in range(sz):
+                org=word[i]
+                for c in 'abcdefghijklmnopqrstuvwxyz':
+                    word[i]=c
+                    new_word=''.join(word)
+                    if new_word in mpp:
+                        if mpp[new_word]+1==step:
+                            arr.append(new_word)
+                            dfs(new_word,arr)
+                            arr.pop()
+                word[i]=org
+        dfs(endWord,[endWord])
         return ans
