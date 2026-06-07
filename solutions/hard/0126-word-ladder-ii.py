@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0126. Word Ladder II
 #  Difficulty : Hard
-#  Runtime  : 71 ms
-#  Memory   : 12.6 MB
+#  Runtime  : 49 ms
+#  Memory   : 12.5 MB
 #  Solved   : 2026-06-07
 # ─────────────────────────────────────────────────
 
@@ -36,11 +36,14 @@ class Solution(object):
                 for c in 'abcdefghijklmnopqrstuvwxyz':
                     word[i]=c
                     new_word=''.join(word)
+
                     if new_word in words:
                         queue.append(new_word)
                         mpp[new_word]=step+1
                         words.remove(new_word)
                 word[i]=org
+        if endWord not in mpp:
+            return []
         ans=[]
         def dfs(string,arr):
             if string==beginWord:
