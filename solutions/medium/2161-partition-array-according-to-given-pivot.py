@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2161. Partition Array According to Given Pivot
 #  Difficulty : Medium
-#  Runtime  : 60 ms
-#  Memory   : 29.4 MB
+#  Runtime  : 192 ms
+#  Memory   : 36.7 MB
 #  Solved   : 2026-06-08
 # ─────────────────────────────────────────────────
 
@@ -13,15 +13,14 @@ class Solution(object):
         :type pivot: int
         :rtype: List[int]
         """
-        lesser=[]
-        equal=[]
-        greater=[]
-
-        for num in nums:
-            if num<pivot:
-                lesser.append(num)
-            elif num==pivot:
-                equal.append(num)
-            else:
-                greater.append(num)
-        return lesser+equal+greater
+        left=0
+        right=len(nums)-1
+        ans=[pivot]*len(nums)
+        for i,j in zip(range(len(nums)),range(len(nums)-1,-1,-1)):
+            if nums[i]<pivot:
+                ans[left]=nums[i]
+                left+=1
+            if nums[j]>pivot:
+                ans[right]=nums[j]
+                right-=1
+        return ans
