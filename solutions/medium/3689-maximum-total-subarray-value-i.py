@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3689. Maximum Total Subarray Value I
 #  Difficulty : Medium
-#  Runtime  : 30 ms
-#  Memory   : 16.3 MB
+#  Runtime  : 23 ms
+#  Memory   : 16.2 MB
 #  Solved   : 2026-06-09
 # ─────────────────────────────────────────────────
 
@@ -13,7 +13,4 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        minimum=min(nums)
-        maximum=max(nums)
-
-        return (maximum-minimum)*k
+        return (max(nums)-min(nums))*k
