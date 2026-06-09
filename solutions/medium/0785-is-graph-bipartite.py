@@ -2,7 +2,7 @@
 #  Problem : 0785. Is Graph Bipartite?
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Memory   : 12.7 MB
 #  Solved   : 2026-06-09
 # ─────────────────────────────────────────────────
 
@@ -13,19 +13,25 @@ class Solution(object):
         :type graph: List[List[int]]
         :rtype: bool
         """
-        queue=deque([0])
-        color={}
-        seen=set()
+        n=len(graph)
+        visited=[-1]*n
+        color=[-1]*n
 
-        for node in range(len(graph)):
-            if node not in color:
-                color[node]='g'
-            seen.add(node)
-            for side in graph[node]:
-                if side in color:
-                    if color[side]==color[node]:
-                        return False
-                else:
-                    adj_color='f' if color[node]=='g' else 'g'
-                    color[side]=adj_color
-        return True 
+        for nd in range(n):
+            if visited[nd]==-1:
+
+                queue=deque([nd])
+
+                while queue:
+                    node=queue.popleft()
+                    visited[node]=1
+                    if color[node]==-1:
+                        color[node]=0
+                    for side in graph[node]:
+                        if color[side]!=-1:
+                            if color[side]==color[node]:
+                                return False
+                        else:
+                            color[side]=1^color[node]
+                            queue.append(side)
+        return True
