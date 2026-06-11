@@ -1,39 +1,37 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3558. Number of Ways to Assign Edge Weights I
 #  Difficulty : Medium
-#  Runtime  : 1105 ms
-#  Memory   : 181.6 MB
+#  Runtime  : 638 ms
+#  Memory   : 52.3 MB
 #  Solved   : 2026-06-11
 # ─────────────────────────────────────────────────
 
+from collections import deque
 class Solution(object):
     def assignEdgeWeights(self, edges):
         """
         :type edges: List[List[int]]
         :rtype: int
         """
-        adj_list={}
+        n=len(edges)
+        adj_list=[[] for _ in range(n+2)]
         for a,b in edges:
-            if a not in adj_list:
-                adj_list[a]=[]
-            if b not in adj_list:
-                adj_list[b]=[]
             adj_list[a].append(b)
             adj_list[b].append(a)
-        visited=set()
-        max_depth=[float('-inf')]
-        def dfs(node,depth):
-            max_depth[0]=max(max_depth[0],depth)
-            if node not in adj_list:
-                return
-            if node not in visited:
-                for nodes in adj_list[node]:
-                    if nodes not in visited:
-                        visited.add(node)
-                        dfs(nodes,depth+1)
-                        visited.remove(node)
-        dfs(1,0)
-        if max_depth[0]==0:
-            return 2
-        ans=pow(2,max_depth[0]-1,int(1e9)+7)
-        return ans
+        
+        queue=deque([1])
+        depth=[-1]*(n+2)
+        depth[1]=0
+        max_depth=0
+        MOD=int(1e9+7)
+        while queue:
+            node=queue.popleft()
+            curr_depth=depth[node]
+
+            if curr_depth>max_depth: max_depth=curr_depth
+
+            for nodes in adj_list[node]:
+                if depth[nodes]==-1:
+                    depth[nodes]=curr_depth+1
+                    queue.append(nodes)
+        return pow(2,max_depth-1,MOD)
