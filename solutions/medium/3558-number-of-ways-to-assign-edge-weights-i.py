@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3558. Number of Ways to Assign Edge Weights I
 #  Difficulty : Medium
-#  Runtime  : 7479 ms
-#  Memory   : 181.7 MB
+#  Runtime  : 1105 ms
+#  Memory   : 181.6 MB
 #  Solved   : 2026-06-11
 # ─────────────────────────────────────────────────
 
@@ -33,7 +33,6 @@ class Solution(object):
                         dfs(nodes,depth+1)
                         visited.remove(node)
         dfs(1,0)
-        print(max_depth,adj_list)
         if max_depth[0]==0:
             return 2
         ans=pow(2,max_depth[0]-1,int(1e9)+7)
