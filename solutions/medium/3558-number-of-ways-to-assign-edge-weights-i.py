@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3558. Number of Ways to Assign Edge Weights I
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 7479 ms
+#  Memory   : 181.7 MB
 #  Solved   : 2026-06-11
 # ─────────────────────────────────────────────────
 
@@ -16,14 +16,25 @@ class Solution(object):
         for a,b in edges:
             if a not in adj_list:
                 adj_list[a]=[]
+            if b not in adj_list:
+                adj_list[b]=[]
             adj_list[a].append(b)
+            adj_list[b].append(a)
+        visited=set()
         max_depth=[float('-inf')]
         def dfs(node,depth):
+            max_depth[0]=max(max_depth[0],depth)
             if node not in adj_list:
-                max_depth[0]=max(max_depth[0],depth)
                 return
-            for nodes in adj_list[node]:
-                dfs(nodes,depth+1)
+            if node not in visited:
+                for nodes in adj_list[node]:
+                    if nodes not in visited:
+                        visited.add(node)
+                        dfs(nodes,depth+1)
+                        visited.remove(node)
         dfs(1,0)
+        print(max_depth,adj_list)
+        if max_depth[0]==0:
+            return 2
         ans=pow(2,max_depth[0]-1,int(1e9)+7)
         return ans
