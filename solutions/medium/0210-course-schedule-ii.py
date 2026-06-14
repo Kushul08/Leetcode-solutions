@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0210. Course Schedule II
 #  Difficulty : Medium
-#  Runtime  : 11 ms
-#  Memory   : 15.5 MB
+#  Runtime  : 5 ms
+#  Memory   : 15.6 MB
 #  Solved   : 2026-06-14
 # ─────────────────────────────────────────────────
 
@@ -17,36 +17,27 @@ class Solution(object):
         for a,b in prerequisites:
             adj_list[b].append(a)
         visited=[0]*numCourses 
-        path=[0]*numCourses 
-        def acyclic(root):
-            if visited[root]==0:
-                visited[root]=1
-                for node in adj_list[root]:
-                    if path[node]==1:
-                        return False
-                    path[node]=1
-                    if acyclic(node)==False:
-                        return False
-                    path[node]=0
-            return True
-        for node in range(numCourses):
-            if visited[node]==0:
-                path[node]=1
-                if acyclic(node)==False:
-                    return []
-                path[node]=0
+        path=[0]*numCourses
         stack=[]
         visited=[0]*numCourses 
         def dfs(node):
             visited[node]=1
             for side in adj_list[node]:
+                if path[side]==1:
+                    return False
                 if visited[side]==0:
-                    dfs(side)
+                    path[side]=1
+                    if dfs(side)==False:
+                        return False
+                    path[side]=0
             stack.append(node)
-            
+            return True
         for node in range(numCourses):
             if visited[node]==0:
-                dfs(node)
+                path[node]=1
+                if dfs(node)==False:
+                    return []
+                path[node]=0
         ans=[]
         while stack:
             ans.append(stack.pop())
