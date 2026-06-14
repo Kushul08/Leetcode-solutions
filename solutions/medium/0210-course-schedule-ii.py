@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0210. Course Schedule II
 #  Difficulty : Medium
-#  Runtime  : 6 ms
-#  Memory   : 15.4 MB
+#  Runtime  : 8 ms
+#  Memory   : 15.6 MB
 #  Solved   : 2026-06-14
 # ─────────────────────────────────────────────────
 
@@ -37,7 +37,4 @@ class Solution(object):
                 if dfs(node)==False:
                     return []
                 path[node]=0
-        ans=[]
-        while stack:
-            ans.append(stack.pop())
-        return ans
+        return stack[::-1]
