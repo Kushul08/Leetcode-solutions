@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2130. Maximum Twin Sum of a Linked List
 #  Difficulty : Medium
-#  Runtime  : 358 ms
-#  Memory   : 93.4 MB
+#  Runtime  : 232 ms
+#  Memory   : 71.3 MB
 #  Solved   : 2026-06-14
 # ─────────────────────────────────────────────────
 
@@ -17,13 +17,24 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: int
         """
-        nums=[]
-        while head:
-            nums.append(head.val)
-            head=head.next
+        curr=head
+        slow=head
+        fast=head
+        while fast and fast.next:
+            slow=slow.next
+            fast=fast.next.next
+        prev=None
+        while slow:
+            nxt=slow.next
+            slow.next=prev
+            prev=slow
+            slow=nxt
+        
+        left=head
+        right=prev
         max_sum=0
-        for i,j in zip(range(len(nums)),range(len(nums)-1,-1,-1)):
-            if i>j:
-                break
-            max_sum=max(max_sum,nums[i]+nums[j])
+        while left and right:
+            max_sum=max(max_sum,left.val+right.val)
+            left=left.next
+            right=right.next
         return max_sum
