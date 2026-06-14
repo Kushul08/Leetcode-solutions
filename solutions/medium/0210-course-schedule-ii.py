@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0210. Course Schedule II
 #  Difficulty : Medium
-#  Runtime  : 5 ms
-#  Memory   : 15.6 MB
+#  Runtime  : 6 ms
+#  Memory   : 15.4 MB
 #  Solved   : 2026-06-14
 # ─────────────────────────────────────────────────
 
@@ -16,7 +16,6 @@ class Solution(object):
         adj_list=[[] for _ in range(numCourses)]
         for a,b in prerequisites:
             adj_list[b].append(a)
-        visited=[0]*numCourses 
         path=[0]*numCourses
         stack=[]
         visited=[0]*numCourses 
