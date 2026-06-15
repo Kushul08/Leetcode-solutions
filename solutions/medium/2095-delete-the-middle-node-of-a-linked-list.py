@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2095. Delete the Middle Node of a Linked List
 #  Difficulty : Medium
-#  Runtime  : 71 ms
-#  Memory   : 91.6 MB
+#  Runtime  : 79 ms
+#  Memory   : 91.7 MB
 #  Solved   : 2026-06-15
 # ─────────────────────────────────────────────────
 
@@ -17,6 +17,8 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
+        if not head.next:
+            return None
         slow=head
         fast=head
         prev=None
@@ -24,7 +26,5 @@ class Solution(object):
             prev=slow
             slow=slow.next
             fast=fast.next.next
-        if prev==None:
-            return None
         prev.next=slow.next
         return head
