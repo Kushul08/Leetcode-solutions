@@ -1,11 +1,12 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0207. Course Schedule
 #  Difficulty : Medium
-#  Runtime  : 4 ms
-#  Memory   : 15.4 MB
-#  Solved   : 2026-06-11
+#  Runtime  : 11 ms
+#  Memory   : 13.2 MB
+#  Solved   : 2026-06-15
 # ─────────────────────────────────────────────────
 
+from collections import deque
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
         """
@@ -13,27 +14,25 @@ class Solution(object):
         :type prerequisites: List[List[int]]
         :rtype: bool
         """
+        in_degree=[0]*numCourses
         adj_list=[[] for _ in range(numCourses)]
         for a,b in prerequisites:
             adj_list[b].append(a)
-        def dfs(root):
-            if visited[root]==0:
-                visited[root]=1
-                if not adj_list[root]:
-                    return True
-                for node in adj_list[root]:
-                    if path[node]==1:
-                        return False
-                    path[node]=1
-                    if dfs(node)==False:
-                        return False
-                    path[node]=0
-        path=[0]*numCourses
-        visited=[0]*numCourses
-        for node in range(numCourses):
-            if visited[node]==0:
-                path[node]=1
-                if dfs(node)==False:
-                    return False
-                path[node]=0
-        return True
+            in_degree[a]+=1
+        
+        queue=deque()
+
+        for i in range(len(in_degree)):
+            if in_degree[i]==0:
+                queue.append(i)
+        count=0
+        while queue:
+            node=queue.popleft()
+            count+=1
+            for neigh in adj_list[node]:
+                in_degree[neigh]-=1
+                if in_degree[neigh]==0:
+                    queue.append(neigh)
+        if count==numCourses:
+            return True
+        return False
