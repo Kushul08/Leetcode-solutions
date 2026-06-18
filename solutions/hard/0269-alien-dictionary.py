@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0269. Alien Dictionary
 #  Difficulty : Hard
-#  Runtime  : 1 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 4 ms
+#  Memory   : 12.4 MB
 #  Solved   : 2026-06-18
 # ─────────────────────────────────────────────────
 
@@ -35,7 +35,7 @@ class Solution(object):
         def toposort(graph):
             in_degree={}
             queue=deque()
-            stack=[]
+            ans=[]
 
             for key,val in graph.items():
                 for node in val:
@@ -51,21 +51,18 @@ class Solution(object):
 
             while queue:
                 node=queue.popleft()
-                stack.append(node)
+                ans.append(node)
                 if node not in graph: continue
                 for neigh in graph[node]:
                     in_degree[neigh]-=1
                     if in_degree[neigh]==0:
                         queue.append(neigh)
-            if len(stack)!=len(all_chars):
+            if len(ans)!=len(all_chars):
                 return ''
-            return stack
+            return ans
                     
         
 
         
         next_word=toposort(adj_list)
-        ans=''
-        for word in next_word:
-            ans+=word
-        return ans
+        return ''.join(next_word)
