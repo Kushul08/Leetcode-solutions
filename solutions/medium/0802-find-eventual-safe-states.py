@@ -1,38 +1,40 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0802. Find Eventual Safe States
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Runtime  : 77 ms
+#  Memory   : 17.6 MB
 #  Solved   : 2026-06-18
 # ─────────────────────────────────────────────────
 
+from collections import deque
 class Solution(object):
     def eventualSafeNodes(self, graph):
         """
         :type graph: List[List[int]]
         :rtype: List[int]
+        queue=deque()
         """
-        is_safe=[-1]*len(graph)
-        visited=[0]*len(graph)
-        # print(is_safe)
-        def dfs(root):
-            if is_safe[root]==1:
-                return True
-            for node in graph[root]:
-                if visited[node]==1:
-                    return False
-                visited[node]=1
-                if dfs(node)==False:
-                    return False
-                visited[node]=0
-            return True
-        
-        for root in range(len(graph)):
-            visited[root]=1
-            if dfs(root)==True:
-                is_safe[root]=1
-            else:
-                is_safe[root]=0
-            visited[root]=0
-            
-        return [i for i in range(len(is_safe)) if is_safe[i]==1]
+        adj_list=[[] for _ in range(len(graph))]
+        queue=deque()
+        in_degree=[0]*len(graph)
+        safe=[]
+
+
+        for i in range(len(graph)):
+            if not graph[i]:
+                queue.append(i)
+            for node in graph[i]:
+                adj_list[node].append(i)
+            in_degree[i]=len(graph[i])
+
+
+
+        while queue:
+            root=queue.popleft()
+            safe.append(root)
+            for node in adj_list[root]:
+                in_degree[node]-=1
+                if in_degree[node]==0:
+                    queue.append(node)
+            adj_list[root]=[]
+        return sorted(safe)
