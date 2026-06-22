@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1189. Maximum Number of Balloons
 #  Difficulty : Easy
-#  Runtime  : 0 ms
+#  Runtime  : 7 ms
 #  Memory   : 12.4 MB
 #  Solved   : 2026-06-22
 # ─────────────────────────────────────────────────
@@ -14,7 +14,7 @@ class Solution(object):
         :rtype: int
         """
         text_freq=Counter(text)
-        ballon_freq=Counter('ballon')
+        ballon_freq=Counter('balloon')
 
         instances=float('inf')
         for char in 'ballon':
