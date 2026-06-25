@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1091. Shortest Path in Binary Matrix
 #  Difficulty : Medium
-#  Runtime  : 246 ms
-#  Memory   : 12.7 MB
+#  Runtime  : 358 ms
+#  Memory   : 12.6 MB
 #  Solved   : 2026-06-25
 # ─────────────────────────────────────────────────
 
@@ -24,12 +24,10 @@ class Solution(object):
         directions=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
         while queue:
             d,x,y=queue.popleft()
-            if d>dis[x][y]:
-                continue
             for dx,dy in directions:
                 nx,ny=x+dx,y+dy
                 if 0<=nx<n and 0<=ny<n:
-                    if grid[nx][ny]==0 and dis[x][y]+1<dis[nx][ny]:
+                    if grid[nx][ny]==0 and dis[nx][ny]==float('inf'):
                         dis[nx][ny]=dis[x][y]+1
                         queue.append((dis[nx][ny],nx,ny))
         if dis[-1][-1]==float('inf'):
