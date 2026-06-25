@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1091. Shortest Path in Binary Matrix
 #  Difficulty : Medium
-#  Runtime  : 327 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 339 ms
+#  Memory   : 12.6 MB
 #  Solved   : 2026-06-25
 # ─────────────────────────────────────────────────
 
@@ -30,9 +30,9 @@ class Solution(object):
                 nx,ny=x+dx,y+dy
                 if 0<=nx<n and 0<=ny<n:
                     if grid[nx][ny]==0 and dis[nx][ny]==float('inf'):
+                        if nx==n-1 and ny==n-1:
+                            return dis[x][y]+1
                         dis[nx][ny]=dis[x][y]+1
                         queue.append((dis[nx][ny],nx,ny))
-        if dis[-1][-1]==float('inf'):
-            return -1
-        return dis[-1][-1]
+        return -1
             
