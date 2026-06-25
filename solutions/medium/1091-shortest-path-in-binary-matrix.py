@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1091. Shortest Path in Binary Matrix
 #  Difficulty : Medium
-#  Runtime  : 310 ms
+#  Runtime  : 246 ms
 #  Memory   : 12.7 MB
 #  Solved   : 2026-06-25
 # ─────────────────────────────────────────────────
 
-from heapq import heappush,heappop
+from collections import deque
 class Solution(object):
     def shortestPathBinaryMatrix(self, grid):
         """
@@ -18,12 +18,12 @@ class Solution(object):
         dis=[[float('inf')]*len(grid) for _ in range(len(grid))]
         dis[0][0]=1
         
-        queue=[]
+        queue=deque()
+        queue.append((dis[0][0],0,0))
 
-        heappush(queue,(dis[0][0],0,0))
         directions=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
         while queue:
-            d,x,y=heappop(queue)
+            d,x,y=queue.popleft()
             if d>dis[x][y]:
                 continue
             for dx,dy in directions:
@@ -31,7 +31,7 @@ class Solution(object):
                 if 0<=nx<n and 0<=ny<n:
                     if grid[nx][ny]==0 and dis[x][y]+1<dis[nx][ny]:
                         dis[nx][ny]=dis[x][y]+1
-                        heappush(queue,(dis[nx][ny],nx,ny))
+                        queue.append((dis[nx][ny],nx,ny))
         if dis[-1][-1]==float('inf'):
             return -1
         return dis[-1][-1]
