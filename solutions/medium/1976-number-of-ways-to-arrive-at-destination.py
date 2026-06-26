@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1976. Number of Ways to Arrive at Destination
 #  Difficulty : Medium
-#  Runtime  : 18 ms
-#  Memory   : 19.4 MB
+#  Runtime  : 27 ms
+#  Memory   : 19.3 MB
 #  Solved   : 2026-06-26
 # ─────────────────────────────────────────────────
 
@@ -32,7 +32,7 @@ class Solution(object):
                 continue
             for v,w in adj_list[node]:
                 if cost+w==dis[v]:
-                    ways[v]+=ways[node]
+                    ways[v]=(ways[v]+ways[node])%MOD
                 if cost+w<dis[v]:
                     ways[v]=ways[node]
                     dis[v]=cost+w
