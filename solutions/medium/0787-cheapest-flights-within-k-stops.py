@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0787. Cheapest Flights Within K Stops
 #  Difficulty : Medium
-#  Runtime  : 24 ms
+#  Runtime  : 19 ms
 #  Memory   : 13.3 MB
 #  Solved   : 2026-06-26
 # ─────────────────────────────────────────────────
 
-from heapq import heappush, heappop
+from collections import deque
 class Solution(object):
     def findCheapestPrice(self, n, flights, src, dst, k):
         """
