@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1976. Number of Ways to Arrive at Destination
 #  Difficulty : Medium
-#  Runtime  : 23 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 18 ms
+#  Memory   : 19.4 MB
 #  Solved   : 2026-06-26
 # ─────────────────────────────────────────────────
 
@@ -19,7 +19,7 @@ class Solution(object):
         for u,v,w in roads:
             adj_list[u].append((v,w))
             adj_list[v].append((u,w))
-        dis=[float('inf')]*n
+        dis=[pow(10,18)]*n
         ways=[0]*n
         dis[0]=0
         ways[0]=1
