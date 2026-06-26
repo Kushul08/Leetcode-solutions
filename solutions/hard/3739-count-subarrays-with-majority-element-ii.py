@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3739. Count Subarrays With Majority Element II
 #  Difficulty : Hard
-#  Runtime  : 9649 ms
-#  Memory   : 21.6 MB
-#  Solved   : 2026-06-25
+#  Runtime  : 9451 ms
+#  Memory   : 21.7 MB
+#  Solved   : 2026-06-26
 # ─────────────────────────────────────────────────
 
 from sortedcontainers import SortedList
