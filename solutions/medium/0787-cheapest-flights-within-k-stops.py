@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0787. Cheapest Flights Within K Stops
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.6 MB
+#  Runtime  : 4 ms
+#  Memory   : 13.4 MB
 #  Solved   : 2026-06-26
 # ─────────────────────────────────────────────────
 
-from heapq import heappush, heappop
+from collections import deque
 class Solution(object):
     def findCheapestPrice(self, n, flights, src, dst, k):
         """
@@ -21,18 +21,24 @@ class Solution(object):
         for n1,n2,cost in flights:
             adj_list[n1].append((n2,cost))
         costs=[float('inf')]*n
+        steps=[float('inf')]*n
         costs[src]=0
         queue=[]
         heappush(queue,(0,0,src))
 
+        ans=float('inf')
         while queue:
-            cost,steps,node=heappop(queue)
-            if steps-1>k:
-                continue
+            step,cost,node=heappop(queue)
             if node==dst:
-                return cost
+                if step<=k+1:
+                    ans=min(ans,cost)
+                continue 
+            if step>k+1:  continue
+
             for neigh,weight in adj_list[node]:
-                if cost+weight<costs[neigh]:
+                if cost+weight<costs[neigh] and step<=k:
                     costs[neigh]=cost+weight
-                    heappush(queue,(costs[neigh],steps+1,neigh))
+                    heappush(queue,(step+1,costs[neigh],neigh))
+        if ans!=float('inf'):
+            return ans
         return -1
