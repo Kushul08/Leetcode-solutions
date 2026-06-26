@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1631. Path With Minimum Effort
 #  Difficulty : Medium
-#  Runtime  : 451 ms
-#  Memory   : 13.3 MB
+#  Runtime  : 0 ms
+#  Memory   : 12.5 MB
 #  Solved   : 2026-06-26
 # ─────────────────────────────────────────────────
 
@@ -14,7 +14,7 @@ class Solution(object):
         :rtype: int
         """
         n,m=len(heights),len(heights[0])
-        max_abs=[[float('inf')]*m for _ in range(n)]
+        max_abs=[[1e9]*m for _ in range(n)]
 
         max_abs[0][0]=0
         queue=[]
