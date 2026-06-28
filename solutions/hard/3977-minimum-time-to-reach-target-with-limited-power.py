@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3977. Minimum Time to Reach Target With Limited Power
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 20 MB
+#  Runtime  : 5983 ms
+#  Memory   : 40.9 MB
 #  Solved   : 2026-06-28
 # ─────────────────────────────────────────────────
 
@@ -27,7 +27,7 @@ class Solution:
             if step>dist[node][pow]: continue
             for v,c in adj_list[node]:
                 curr_pow=pow-cost[node]
-                if curr_pow>=0 and step+c<=dist[v][curr_pow]:
+                if curr_pow>=0 and step+c<dist[v][curr_pow]:
                     dist[v][curr_pow]=step+c
                     heappush(queue,(step+c,v,curr_pow))
                     # if v==target:
