@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
 #  Difficulty : Medium
-#  Runtime  : 479 ms
+#  Runtime  : 1282 ms
 #  Memory   : 13 MB
 #  Solved   : 2026-06-29
 # ─────────────────────────────────────────────────
@@ -25,7 +25,9 @@ class Solution(object):
                     if i==j:
                         dist[i][j]=0
                         continue
-                    dist[i][j]=min(dist[i][j],
+                    if dist[i][k]!=float('inf') and dist[k][j]!=float('inf'):
+
+                        dist[i][j]=min(dist[i][j],
                                     dist[i][k]+dist[k][j])
         for i in range(n):
             for j in range(n):
