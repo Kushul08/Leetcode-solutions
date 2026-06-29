@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
 #  Difficulty : Medium
-#  Runtime  : 1282 ms
-#  Memory   : 13 MB
+#  Runtime  : 1202 ms
+#  Memory   : 12.8 MB
 #  Solved   : 2026-06-29
 # ─────────────────────────────────────────────────
 
@@ -15,7 +15,6 @@ class Solution(object):
         :rtype: int
         """
         dist=[[float('inf')]*n for _ in range(n)]
-        neigh_cities=[0]*n
         for u,v,w in edges:
             dist[u][v]=w
             dist[v][u]=w
@@ -29,12 +28,14 @@ class Solution(object):
 
                         dist[i][j]=min(dist[i][j],
                                     dist[i][k]+dist[k][j])
+        city_count=n
+        city_no=0
         for i in range(n):
+            count=0
             for j in range(n):
                 if dist[i][j]<=distanceThreshold :
-                    neigh_cities[i]+=1
-        min_cities=min(neigh_cities)
-        for i in range(len(neigh_cities)-1,-1,-1):
-            if neigh_cities[i]==min_cities:
-                return i
-        
+                    count+=1
+            if count<=city_count:
+                city_count=count
+                city_no=i
+        return city_no
