@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3286. Find a Safe Walk Through a Grid
 #  Difficulty : Medium
-#  Runtime  : 0 ms
+#  Runtime  : 99 ms
 #  Memory   : 12.5 MB
 #  Solved   : 2026-07-02
 # ─────────────────────────────────────────────────
@@ -18,6 +18,7 @@ class Solution(object):
         # Again smells me like a Dijkstra
         queue=[]
         if grid[0][0]==1: health-=1
+        if health<=0: return False
         heappush(queue,(-health,0,0))
         directions=[(0,-1),(1,0),(0,1),(-1,0)]
 
@@ -34,9 +35,9 @@ class Solution(object):
                 nx,ny=x+dx,y+dy
                 if 0<=nx<n and 0<=ny<m:
                     rem_health=heal-grid[nx][ny]
-                    if rem_health>=0 and rem_health>best[nx][ny]:
+                    if rem_health>0 and rem_health>best[nx][ny]:
                         best[nx][ny]=rem_health
-                        rem_health=rem_health*-1
-                        heappush(queue,(rem_health,nx,ny))
+                        # rem_health=rem_health*-1
+                        heappush(queue,(-1*rem_health,nx,ny))
 
-        
+        return False
