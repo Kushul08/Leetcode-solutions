@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3620. Network Recovery Pathways
 #  Difficulty : Hard
-#  Runtime  : 52 ms
-#  Memory   : 26.2 MB
+#  Runtime  : 1616 ms
+#  Memory   : 50.3 MB
 #  Solved   : 2026-07-03
 # ─────────────────────────────────────────────────
 
@@ -28,6 +28,8 @@ class Solution(object):
             dis[0]=0
             while queue:
                 cost,node=heappop(queue)
+                if cost>dis[node]:
+                    continue
                 if node==n-1:
                     return True
                 for v,w in adj_list[node]:
@@ -36,14 +38,15 @@ class Solution(object):
                             dis[v]=cost+w
                             heappush(queue,(cost+w,v))
             return False
+        weights=sorted(set(w for _,_,w in edges ))
         low=0
-        high=int(1e9)
+        high=len(weights)-1
         ans=None
         
         while low<=high:
             mid=(low+high)//2
-            if check(mid):
-                ans=mid
+            if check(weights[mid]):
+                ans=weights[mid]
                 low=mid+1
             else:
                 high=mid-1
