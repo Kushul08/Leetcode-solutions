@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3964. Minimum Lights to Illuminate a Road
 #  Difficulty : Medium
-#  Runtime  : 798 ms
-#  Memory   : 32.1 MB
+#  Runtime  : 455 ms
+#  Memory   : 31 MB
 #  Solved   : 2026-07-04
 # ─────────────────────────────────────────────────
 
@@ -19,9 +19,6 @@ class Solution:
         prefix=[diff[0]]
         for i in range(1,len(diff)):
             prefix.append(diff[i]+prefix[-1])
-        print(diff,prefix)
-        
-        
 
         ans=count=0
         for i,num in enumerate(prefix):
@@ -29,7 +26,6 @@ class Solution:
             if num==0:
                 count+=1
             else:
-                print(count)
                 ans+=math.ceil(count/3)
                 count=0
         if count:
