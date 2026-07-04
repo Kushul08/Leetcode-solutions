@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2492. Minimum Score of a Path Between Two Cities
 #  Difficulty : Medium
-#  Runtime  : 201 ms
-#  Memory   : 51.7 MB
+#  Runtime  : 207 ms
+#  Memory   : 51.6 MB
 #  Solved   : 2026-07-04
 # ─────────────────────────────────────────────────
 
@@ -21,7 +21,6 @@ class Solution(object):
         for u,v,w in roads:
             adj_list[u].append(v)
             adj_list[v].append(u)
-        # print(adj_list)
         visited=[0]*(n+1)
         while queue:
             node=queue.popleft()
