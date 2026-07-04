@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3964. Minimum Lights to Illuminate a Road
 #  Difficulty : Medium
-#  Runtime  : 546 ms
-#  Memory   : 35.4 MB
+#  Runtime  : 506 ms
+#  Memory   : 35.6 MB
 #  Solved   : 2026-07-04
 # ─────────────────────────────────────────────────
 
@@ -20,12 +20,10 @@ class Solution:
                 for val in range(start,end+1):
                     if val in nums:
                         nums.remove(val)
-        sequence=[]
         count=0
         nums=list(nums)
         if not nums: return 0
         nums.append(int(1e9))
-        if len(nums)==1: return 1
         min_lights=0
         
 
@@ -36,11 +34,4 @@ class Solution:
             else:
                 min_lights+=(1 if count+1<=2 else math.ceil((count+1)/3))
                 count=0
-        # # print(sequence)
-        # # print(sequence)
-        # for num in sequence:
-        #     if num<=2:
-        #         min_lights+=1
-        #     else:
-        #         min_lights+=(math.ceil(num/3))
         return min_lights
