@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1288. Remove Covered Intervals
 #  Difficulty : Medium
-#  Runtime  : 5 ms
+#  Runtime  : 0 ms
 #  Memory   : 12.6 MB
 #  Solved   : 2026-07-06
 # ─────────────────────────────────────────────────
@@ -13,14 +13,14 @@ class Solution(object):
         :rtype: int
         """
         intervals.sort()
-        stack=[]
+        last=None
+        count=0
         for interval in intervals:
-            if stack and stack[-1][0]<=interval[0] and stack[-1][1]>=interval[1]:
+            if count and last[0]<=interval[0] and last[1]>=interval[1]:
                 continue
-            elif stack and stack[-1][0]==interval[0] and stack[-1][1]<interval[1]:
-                while stack and stack[-1][0]==interval[0] and stack[-1][1]<interval[1]:
-                    stack.pop()
-                stack.append(interval)
+            elif count and last[0]==interval[0] and last[1]<interval[1]:
+                last=interval
             else:
-                stack.append(interval)
-        return len(stack)
+                last=(interval)
+                count+=1
+        return count
