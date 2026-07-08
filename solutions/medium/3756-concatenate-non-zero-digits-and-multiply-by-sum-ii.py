@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3756. Concatenate Non-Zero Digits and Multiply by Sum II
 #  Difficulty : Medium
-#  Runtime  : 12 ms
-#  Memory   : 16.1 MB
+#  Runtime  : 1008 ms
+#  Memory   : 54.7 MB
 #  Solved   : 2026-07-08
 # ─────────────────────────────────────────────────
 
@@ -21,10 +21,11 @@ class Solution(object):
         for i in range(1,len(pow10)):
             pow10[i]=pow10[i-1]*10%MOD
         for i in range(len(s)):
-            if int(s[i])!=0:
+            if s[i]!='0':
                 digits.append(int(s[i]))
                 pos.append(i)
-
+        if not digits:
+            return [0]*len(queries)
         sums=[digits[0]]
         for i in range(1,len(digits)):
             sums.append(sums[-1]+digits[i])
