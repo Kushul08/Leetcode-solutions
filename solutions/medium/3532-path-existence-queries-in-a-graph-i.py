@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3532. Path Existence Queries in a Graph I
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Runtime  : 732 ms
+#  Memory   : 45.8 MB
 #  Solved   : 2026-07-09
 # ─────────────────────────────────────────────────
 
@@ -38,12 +38,9 @@ class Solution(object):
         :rtype: List[bool]
         """
         dsu=DSU(n)
-        for i in range(len(nums)):
-            for j in range(i,len(nums)):
-                if nums[j]-nums[i]<=maxDiff:
-                    dsu.union(i,j)
-                else:
-                    break
+        for i in range(len(nums)-1):
+            if nums[i+1]-nums[i]<=maxDiff:
+                dsu.union(i,i+1)
         ans=[]
         for u,v in queries:
             if dsu.find_par(u)==dsu.find_par(v):
