@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1319. Number of Operations to Make Network Connected
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 55 ms
+#  Memory   : 31.1 MB
 #  Solved   : 2026-07-10
 # ─────────────────────────────────────────────────
 
@@ -14,28 +14,29 @@ class Solution(object):
         :type connections: List[List[int]]
         :rtype: int
         """
+        if len(connections)<n-1:
+            return -1
         adj_list=[[] for _ in range(n)]
         for u,v in connections:
             adj_list[u].append(v)
             adj_list[v].append(u)
-        queue=deque()
-        queue.append(0)
+        disconnected=0
         visited=[0]*n
-        edges=0
-        while queue:
-            node=queue.popleft()
-            if visited[node]==1:
+
+        for i in range(n):
+            if visited[i]==1:
                 continue
-            # print(node)
-            edges+=1
-            visited[node]=1
-            for neigh in adj_list[node]:
-                if visited[neigh]==0:
-                    queue.append(neigh)
-        # print(edges,visited)
-        disconnect=visited.count(0)
-        # print(disconnect,total_edges-edges+1)
-        total_edges=len(connections)
-        if total_edges-edges+1>=disconnect:
-            return total_edges-edges+1
-        return -1
+            disconnected+=1
+            queue=deque()
+            queue.append(i)
+            while queue:
+                node=queue.popleft()
+                if visited[node]==1:
+                    continue
+                # print(node)
+                visited[node]=1
+                for neigh in adj_list[node]:
+                    if visited[neigh]==0:
+                        queue.append(neigh)
+            # print(edges,visited)
+        return disconnected-1
