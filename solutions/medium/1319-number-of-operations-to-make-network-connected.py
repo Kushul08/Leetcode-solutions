@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1319. Number of Operations to Make Network Connected
 #  Difficulty : Medium
-#  Runtime  : 55 ms
-#  Memory   : 31.1 MB
+#  Runtime  : 51 ms
+#  Memory   : 30.9 MB
 #  Solved   : 2026-07-10
 # ─────────────────────────────────────────────────
 
@@ -20,23 +20,21 @@ class Solution(object):
         for u,v in connections:
             adj_list[u].append(v)
             adj_list[v].append(u)
-        disconnected=0
+        components=0
         visited=[0]*n
 
         for i in range(n):
             if visited[i]==1:
                 continue
-            disconnected+=1
+            components+=1
             queue=deque()
             queue.append(i)
             while queue:
                 node=queue.popleft()
                 if visited[node]==1:
                     continue
-                # print(node)
                 visited[node]=1
                 for neigh in adj_list[node]:
                     if visited[neigh]==0:
                         queue.append(neigh)
-            # print(edges,visited)
-        return disconnected-1
+        return components-1
