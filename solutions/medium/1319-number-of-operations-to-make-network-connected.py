@@ -1,12 +1,34 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1319. Number of Operations to Make Network Connected
 #  Difficulty : Medium
-#  Runtime  : 51 ms
-#  Memory   : 30.9 MB
+#  Runtime  : 149 ms
+#  Memory   : 25.6 MB
 #  Solved   : 2026-07-10
 # ─────────────────────────────────────────────────
 
-from collections import deque
+class DSU:
+    def __init__(self,n):
+        self.parent=[i for i in range(n)]
+        self.rank=[0]*n
+    
+    def find_par(self,node):
+        if self.parent[node]==node:
+            return node
+        self.parent[node]=self.find_par(self.parent[node])
+        return self.parent[node]
+    def union(self,u,v):
+        ulp_u=self.find_par(u)
+        ulp_v=self.find_par(v)
+        if ulp_u==ulp_v:
+            return
+        if self.rank[ulp_u]<self.rank[ulp_v]:
+            self.parent[ulp_u]=ulp_v
+        elif self.rank[ulp_u]>self.rank[ulp_v]:
+            self.parent[ulp_v]=ulp_u
+        else:
+            self.parent[ulp_v]=ulp_u
+            self.rank[ulp_u]+=1
+
 class Solution(object):
     def makeConnected(self, n, connections):
         """
@@ -16,25 +38,11 @@ class Solution(object):
         """
         if len(connections)<n-1:
             return -1
-        adj_list=[[] for _ in range(n)]
+        dsu=DSU(n)
         for u,v in connections:
-            adj_list[u].append(v)
-            adj_list[v].append(u)
-        components=0
-        visited=[0]*n
-
+            dsu.union(u,v)
+        connected=set()
         for i in range(n):
-            if visited[i]==1:
-                continue
-            components+=1
-            queue=deque()
-            queue.append(i)
-            while queue:
-                node=queue.popleft()
-                if visited[node]==1:
-                    continue
-                visited[node]=1
-                for neigh in adj_list[node]:
-                    if visited[neigh]==0:
-                        queue.append(neigh)
-        return components-1
+            connected.add(dsu.find_par(i))    
+        print(connected)
+        return len(connected)-1
