@@ -2,7 +2,7 @@
 #  Problem : 0305. Number of Islands II
 #  Difficulty : Hard
 #  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Memory   : 12.3 MB
 #  Solved   : 2026-07-16
 # ─────────────────────────────────────────────────
 
@@ -29,7 +29,7 @@ class DSU:
         elif self.rank[ulp_u]>self.rank[ulp_v]:
             self.parent[ulp_v]=ulp_u
         else:
-            self.rank[ulp_u]=ulp_v
+            self.parent[ulp_u]=ulp_v
             self.rank[ulp_v]+=1
 class Solution(object):
     def numIslands2(self, m, n, positions):
