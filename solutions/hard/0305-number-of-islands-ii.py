@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0305. Number of Islands II
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 257 ms
+#  Memory   : 19.5 MB
 #  Solved   : 2026-07-16
 # ─────────────────────────────────────────────────
 
@@ -45,6 +45,9 @@ class Solution(object):
         ans=[]
         grid=[[0]*n for _ in range(m)]
         for x,y in positions:
+            if grid[x][y]==1:
+                ans.append(count)
+                continue
             count+=1
             grid[x][y]=1
             for dx,dy in directions:
