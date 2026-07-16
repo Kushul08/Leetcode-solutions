@@ -2,7 +2,7 @@
 #  Problem : 0305. Number of Islands II
 #  Difficulty : Hard
 #  Runtime  : 0 ms
-#  Memory   : 12.6 MB
+#  Memory   : 12.5 MB
 #  Solved   : 2026-07-16
 # ─────────────────────────────────────────────────
 
@@ -43,7 +43,7 @@ class Solution(object):
         dsu=DSU(m,n)
         count=0
         ans=[]
-        grid=[[0]*m for _ in range(n)]
+        grid=[[0]*n for _ in range(m)]
         for x,y in positions:
             count+=1
             grid[x][y]=1
