@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0827. Making A Large Island
 #  Difficulty : Hard
-#  Runtime  : 2626 ms
-#  Memory   : 74.6 MB
+#  Runtime  : 2567 ms
+#  Memory   : 74.5 MB
 #  Solved   : 2026-07-17
 # ─────────────────────────────────────────────────
 
@@ -26,11 +26,11 @@ class DSU:
             self.components[ulp_v]+=self.components[ulp_u]
         elif self.rank[ulp_u]>self.rank[ulp_v]:
             self.parent[ulp_v]=ulp_u
-            self.components[ulp_u]+=self.components.get(ulp_v,0)
+            self.components[ulp_u]+=self.components[ulp_v]
         else:
             self.parent[ulp_v]=ulp_u
             self.rank[ulp_u]+=1
-            self.components[ulp_u]+=self.components.get(ulp_v,0)
+            self.components[ulp_u]+=self.components[ulp_v]
 class Solution(object):
     def largestIsland(self, grid):
         """
