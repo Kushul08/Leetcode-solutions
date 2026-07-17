@@ -1,15 +1,20 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3312. Sorted GCD Pair Queries
 #  Difficulty : Hard
-#  Runtime  : 659 ms
-#  Memory   : 42 MB
+#  Runtime  : 1332 ms
+#  Memory   : 33.9 MB
 #  Solved   : 2026-07-17
 # ─────────────────────────────────────────────────
 
 from bisect import bisect_left, bisect_right
 from collections import Counter
-class Solution:
-    def gcdValues(self, nums: List[int], queries: List[int]) -> List[int]:
+class Solution(object):
+    def gcdValues(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
         freq=Counter(nums)
         G=2
         MAX=max(nums)
