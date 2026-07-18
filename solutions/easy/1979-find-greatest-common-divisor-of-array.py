@@ -2,7 +2,7 @@
 #  Problem : 1979. Find Greatest Common Divisor of Array
 #  Difficulty : Easy
 #  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Memory   : 12.6 MB
 #  Solved   : 2026-07-18
 # ─────────────────────────────────────────────────
 
@@ -12,9 +12,7 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        mn=min(nums)
-        mx=max(nums)
-        for i in range(min(mn,mx),0,-1):
-            if mn%i==0 and mx%i==0:
-                return i
-        return 1
+        a,b=min(nums),max(nums)
+        while b:
+            a,b=b,a%b
+        return a
