@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0778. Swim in Rising Water
 #  Difficulty : Hard
-#  Runtime  : 44 ms
-#  Memory   : 19.3 MB
-#  Solved   : 2026-07-17
+#  Runtime  : 32 ms
+#  Memory   : 12.4 MB
+#  Solved   : 2026-07-21
 # ─────────────────────────────────────────────────
 
-from collections import deque
+from heapq import heappush, heappop
 class Solution(object):
     def swimInWater(self, grid):
         """
@@ -14,28 +14,19 @@ class Solution(object):
         :rtype: int
         """
         n=len(grid)
-        queue=deque()
-        queue.append((0,0))
         visited=[[0]*n for _ in range(n)]
         visited[0][0]=1
-        directions=[[-1,0],[1,0],[0,1],[0,-1]]
-        maxi=grid[0][0]
-        while queue:
-            x,y=queue.popleft()
-            maxi=max(maxi,grid[x][y])
-            if x==n-1 and y==n-1:
-                return maxi
-            
-            u,v=None,None
-            mini=50000
+        queue=[]
 
+        heappush(queue,(grid[0][0],0,0))
+        directions=[[-1,0],[1,0],[0,1],[0,-1]]
+
+        while queue:
+            max_val,x,y=heappop(queue)
+            if x==n-1 and y==n-1:
+                return max_val
             for dx,dy in directions:
                 nx,ny=dx+x,dy+y
                 if 0<=nx<n and 0<=ny<n and visited[nx][ny]==0:
-                    if mini>grid[nx][ny]:
-                        u,v=nx,ny
-                        mini=grid[nx][ny]
-            if u!=None and v!=None:
-                queue.append((u,v))
-                visited[u][v]=1
-        return maxi
+                    visited[nx][ny]=1
+                    heappush(queue,(max(max_val,grid[nx][ny]),nx,ny))
