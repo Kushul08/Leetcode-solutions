@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1192. Critical Connections in a Network
 #  Difficulty : Hard
-#  Runtime  : 187 ms
+#  Runtime  : 222 ms
 #  Memory   : 93.4 MB
 #  Solved   : 2026-07-21
 # ─────────────────────────────────────────────────
@@ -12,8 +12,6 @@ class Solution:
         for u,v in connections:
             adj_list[u].append(v)
             adj_list[v].append(u)
-        # print(adj_list)
-        # return [[1,0],[0,1]]
         visited=[0]*n
         bridges=[]
         timer=1
