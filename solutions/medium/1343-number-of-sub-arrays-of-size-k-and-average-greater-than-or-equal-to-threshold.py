@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
 #  Difficulty : Medium
-#  Runtime  : 56 ms
-#  Memory   : 19.9 MB
+#  Runtime  : 49 ms
+#  Memory   : 20 MB
 #  Solved   : 2026-07-21
 # ─────────────────────────────────────────────────
 
@@ -24,7 +24,7 @@ class Solution(object):
         while r<n:
             sums+=arr[r]
             # print(sums)
-            if sums/k>=threshold:
+            if sums>=threshold*k:
                 count+=1
             sums-=arr[l]
             l+=1
