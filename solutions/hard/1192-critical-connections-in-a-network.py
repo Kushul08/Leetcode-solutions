@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1192. Critical Connections in a Network
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 19.2 MB
+#  Runtime  : 187 ms
+#  Memory   : 93.4 MB
 #  Solved   : 2026-07-21
 # ─────────────────────────────────────────────────
 
@@ -30,7 +30,7 @@ class Solution:
                 if visited[it]==0:
                     dfs(it,node,low,tin)
                     low[node]=min(low[node],low[it])
-                    if low[it]>low[node]:
+                    if low[it]>tin[node]:# why i am here comapring the low of it with the tin of node
                         bridges.append([node,it])
                 else:
                     low[node]=min(low[node],low[it])
