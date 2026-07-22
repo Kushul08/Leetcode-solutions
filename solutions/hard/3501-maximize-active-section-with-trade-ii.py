@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3501. Maximize Active Section with Trade II
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 19.6 MB
+#  Runtime  : 3349 ms
+#  Memory   : 80.4 MB
 #  Solved   : 2026-07-22
 # ─────────────────────────────────────────────────
 
@@ -33,7 +33,7 @@ class SegmentTree:
 
             if L<=mid:
                 res=max(res,_query(p<<1,l,mid))
-            else:
+            if R>mid:
                 res=max(res,_query(p<<1|1,mid+1,r))
             return res
         return _query(1,0,self.n-1)
@@ -75,7 +75,7 @@ class Solution:
                 bestgain=firstlen+lastlen
                 ans.append(count1+bestgain)
                 continue
-            val1=fistlen+zero[i+1]
+            val1=firstlen+zero[i+1]
             val2=zero[j-1]+lastlen
             val3=seg.query(i+1,j-2)
             bestgain=max(val1,val2,val3)
