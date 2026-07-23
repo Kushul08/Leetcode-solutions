@@ -2,18 +2,15 @@
 #  Problem : 0070. Climbing Stairs
 #  Difficulty : Easy
 #  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Memory   : 19.2 MB
 #  Solved   : 2026-07-23
 # ─────────────────────────────────────────────────
 
-from functools import lru_cache
 class Solution:
     def climbStairs(self, n: int) -> int:
-        @lru_cache
-        def climb(n):
-            if n<0:
-                return 0
-            if n==0:
-                return 1
-            return climb(n-1)+climb(n-2)
-        return climb(n)
+        dp=[0]*46
+        dp[1]=1
+        dp[2]=2
+        for i in range(3,n+1):
+            dp[i]=dp[i-1]+dp[i-2]
+        return dp[n]
