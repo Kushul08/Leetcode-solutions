@@ -10,10 +10,10 @@ from functools import lru_cache
 class Solution:
     def climbStairs(self, n: int) -> int:
         @lru_cache
-        def climb(curr):
-            if curr>n:
+        def climb(n):
+            if n<0:
                 return 0
-            if curr==n:
+            if n==0:
                 return 1
-            return climb(curr+1)+climb(curr+2)
-        return climb(0)
+            return climb(n-1)+climb(n-2)
+        return climb(n)
