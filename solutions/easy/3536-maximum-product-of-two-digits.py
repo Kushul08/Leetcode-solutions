@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3536. Maximum Product of Two Digits
 #  Difficulty : Easy
-#  Runtime  : 4 ms
-#  Memory   : 12.2 MB
+#  Runtime  : 1 ms
+#  Memory   : 12.5 MB
 #  Solved   : 2026-07-25
 # ─────────────────────────────────────────────────
 
@@ -12,8 +12,5 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        result=[]
-        for num in str(n):
-            result.append(int(num))
-        result.sort()
-        return result[-1]*result[-2]
+        num=sorted(str(n))
+        return int(num[-1])*int(num[-2])
