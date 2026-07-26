@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0628. Maximum Product of Three Numbers
 #  Difficulty : Easy
-#  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Runtime  : 11 ms
+#  Memory   : 13.3 MB
 #  Solved   : 2026-07-26
 # ─────────────────────────────────────────────────
 
@@ -19,7 +19,7 @@ class Solution(object):
                 a,b,c=num,a,b                
             elif num>b:
                 b,c=num,b
-            else:
+            elif num>c:
                 c=num
             if num<x:
                 x,y=num,x
