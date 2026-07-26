@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0003. Longest Substring Without Repeating Characters
 #  Difficulty : Medium
-#  Runtime  : 38 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 37 ms
+#  Memory   : 12.6 MB
 #  Solved   : 2026-07-26
 # ─────────────────────────────────────────────────
 
@@ -12,15 +12,13 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        l=0
-        r=0
+        l=r=0
         n=len(s)
-        if n==0:
-            return 0
+        if n==0: return 0
         max_=1
         hashmap={}
         while r<n:
-            while l<=r and (r-l)!=len(hashmap):
+            if l<=r and (r-l)!=len(hashmap):
                 hashmap[s[l]]-=1
                 if hashmap[s[l]]==0:
                     del hashmap[s[l]]
