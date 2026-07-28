@@ -2,7 +2,7 @@
 #  Problem : 0213. House Robber II
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.3 MB
+#  Memory   : 12.5 MB
 #  Solved   : 2026-07-28
 # ─────────────────────────────────────────────────
 
@@ -16,7 +16,6 @@ class Solution(object):
             return max(nums)
         def house_rob(nums):
             n=len(nums)
-            dp=[0]*n
             first=nums[0]
             second=nums[1]
             third=max(second,nums[0]+nums[2])
