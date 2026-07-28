@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3517. Smallest Palindromic Rearrangement I
 #  Difficulty : Medium
-#  Runtime  : 347 ms
-#  Memory   : 13.8 MB
+#  Runtime  : 284 ms
+#  Memory   : 13.4 MB
 #  Solved   : 2026-07-28
 # ─────────────────────────────────────────────────
 
@@ -17,8 +17,7 @@ class Solution(object):
             counter[ch]+=1
         double=''
         single=''
-        new_s=sorted(set(s))
-        for ch in new_s:
+        for ch in string.ascii_lowercase:
             double+=ch*(counter[ch]/2)
             if counter[ch]%2!=0:
                 single+=ch
