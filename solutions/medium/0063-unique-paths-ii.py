@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0063. Unique Paths II
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 2 ms
+#  Memory   : 12.4 MB
 #  Solved   : 2026-07-29
 # ─────────────────────────────────────────────────
 
@@ -13,7 +13,7 @@ class Solution(object):
         :rtype: int
         """
         n,m=len(obstacleGrid),len(obstacleGrid[0])
-        if obstacleGrid[0][0]==1:
+        if obstacleGrid[0][0]==1 or obstacleGrid[n-1][m-1]==1:
             return 0
         dp=[[0]*m for _ in range(n)]
         for i in range(m):
@@ -30,4 +30,4 @@ class Solution(object):
                 up=dp[i-1][j] if obstacleGrid[i-1][j]==0 else 0
                 left=dp[i][j-1] if obstacleGrid[i][j-1]==0 else 0
                 dp[i][j]=up+left
-        return dp[n-1][m-1] if obstacleGrid[n-1][m-1]==0 else 0
+        return dp[n-1][m-1] 
