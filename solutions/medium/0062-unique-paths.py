@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0062. Unique Paths
 #  Difficulty : Medium
-#  Runtime  : 1 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 0 ms
+#  Memory   : 12.4 MB
 #  Solved   : 2026-07-29
 # ─────────────────────────────────────────────────
 
@@ -13,8 +13,10 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        dp=[[1]*n for _ in range(m)]
+        dp=[1]*n
         for x in range(1,m):
+            col=1
             for y in range(1,n):
-                dp[x][y]=dp[x-1][y]+dp[x][y-1]
-        return dp[m-1][n-1]
+                dp[y]=col+dp[y]
+                col=dp[y]
+        return dp[n-1]
