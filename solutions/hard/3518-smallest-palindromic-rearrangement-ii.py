@@ -1,18 +1,63 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3518. Smallest Palindromic Rearrangement II
 #  Difficulty : Hard
-#  Runtime  : 31 ms
-#  Memory   : 61.7 MB
+#  Runtime  : 342 ms
+#  Memory   : 19.8 MB
 #  Solved   : 2026-07-29
 # ─────────────────────────────────────────────────
 
-import math
+from math import gcd, factorial
 class Solution:
     def smallestPalindrome(self, s: str, k: int) -> str:
+
+        def nCr(n, r, limit):
+            r = min(r, n - r)
+
+            ans = 1
+
+            for i in range(1, r + 1):
+                num = n - r + i
+                den = i
+
+                g = gcd(num, den)
+                num //= g
+                den //= g
+
+                g = gcd(ans, den)
+                ans //= g
+                den //= g
+
+                ans *= num
+
+                if den != 1:
+                    ans //= den
+
+                if ans > limit:
+                    return limit + 1
+
+            return ans
+
+        def count(freq, total, limit):
+            ans = 1
+            remaining = total
+
+            for f in freq.values():
+
+                if f == 0:
+                    continue
+
+                ways = nCr(remaining, f, limit)
+
+                ans *= ways
+
+                if ans > limit:
+                    return limit + 1
+
+                remaining -= f
+
+            return ans
         n=len(s)
-        fact=[1]*(n+1)
-        for i in range(1,n+1):
-            fact[i]=fact[i-1]*i
+
         counter=defaultdict(int)
         for ch in s:
             counter[ch]+=1
@@ -28,18 +73,14 @@ class Solution:
         for ch in left:
             lc[ch]+=1
 
-        denom=1
-        for ch in lc:
-            denom*=fact[lc[ch]]
-        unique_palindromes=fact[L]//denom
-
-        if k>unique_palindromes:
+        if count(lc, L, k) < k:
             return ""
+        
 
         
-        denominator=1
-        for char in lc:
-            denominator*=fact[lc[char]]
+        # denominator=1
+        # for char in lc:
+            # denominator*=fact[lc[char]]
         
         ans=''
         while L>0:
@@ -51,16 +92,17 @@ class Solution:
                 #         denominator*=math.factorial(lc[char]-1)
                 #     else:
                 #         denominator*=math.factorial(lc[char])
-                new=denominator//lc[ch]
-                count=fact[L-1]//new
-                if count<k: # if k==count we not take because we can't build it if we pick so
-                    k-=count  
+                # new=denominator//lc[ch]
+                # count=fact[L-1]//new
+                lc[ch]-=1
+                if lc[ch]==0:
+                    del lc[ch]
+                cnt=count(lc,L-1,k)
+                if cnt<k: # if k==count we not take because we can't build it if we pick so
+                    k-=cnt  
+                    lc[ch]=lc.get(ch,0)+1
                 else:
-                    denominator=new
                     ans+=ch
-                    lc[ch]-=1
-                    if lc[ch]==0:
-                        del lc[ch]
                     L-=1
                     break
         return ans+middle+ans[::-1]
