@@ -2,7 +2,7 @@
 #  Problem : 3518. Smallest Palindromic Rearrangement II
 #  Difficulty : Hard
 #  Runtime  : 0 ms
-#  Memory   : 19.6 MB
+#  Memory   : 19.7 MB
 #  Solved   : 2026-07-29
 # ─────────────────────────────────────────────────
 
@@ -28,7 +28,7 @@ class Solution:
         denom=1
         for ch in lc:
             denom*=math.factorial(lc[ch])
-        unique_palindromes=(math.factorial(L))/denom
+        unique_palindromes=(math.factorial(L))//denom
 
         if k>unique_palindromes:
             return ""
@@ -44,7 +44,7 @@ class Solution:
                         denominator*=math.factorial(lc[char]-1)
                     else:
                         denominator*=math.factorial(lc[char])
-                count=(math.factorial(L-1))/denominator
+                count=(math.factorial(L-1))//denominator
                 if count<k: # if k==count we not take because we can't build it if we pick so
                     k-=count  
                 else:
