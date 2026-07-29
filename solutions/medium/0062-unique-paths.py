@@ -2,7 +2,7 @@
 #  Problem : 0062. Unique Paths
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Memory   : 12.4 MB
 #  Solved   : 2026-07-29
 # ─────────────────────────────────────────────────
 
@@ -14,9 +14,9 @@ class Solution(object):
         :rtype: int
         """
         dp=[[0]*n for _ in range(m)]
-        for i in range(1,n):
+        for i in range(n):
             dp[0][i]=1
-        for i in range(1,m):
+        for i in range(m):
             dp[i][0]=1
         for x in range(1,m):
             for y in range(1,n):
