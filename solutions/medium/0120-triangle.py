@@ -1,19 +1,18 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0120. Triangle
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.4 MB
+#  Runtime  : 33 ms
+#  Memory   : 20.4 MB
 #  Solved   : 2026-07-30
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def minimumTotal(self, triangle):
-        """
-        :type triangle: List[List[int]]
-        :rtype: int
-        """
-        n=len(triangle)
+from functools import lru_cache
+class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
 
+        n=len(triangle)
+        
+        @lru_cache
         def recur(i,j):
             if i==n-1:
                 return triangle[i][j]
