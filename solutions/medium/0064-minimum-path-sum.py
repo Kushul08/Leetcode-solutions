@@ -2,17 +2,16 @@
 #  Problem : 0064. Minimum Path Sum
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 19.4 MB
+#  Memory   : 19.5 MB
 #  Solved   : 2026-07-30
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def minPathSum(self, grid):
-        """
-        :type grid: List[List[int]]
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def minPathSum(self, grid: List[List[int]]) -> int:
         m,n=len(grid),len(grid[0])
+
+        @lru_cache
         def recur(x,y):
             if x<0 or y<0:
                 return 201
