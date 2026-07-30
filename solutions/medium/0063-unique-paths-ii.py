@@ -2,7 +2,7 @@
 #  Problem : 0063. Unique Paths II
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.2 MB
+#  Memory   : 12.3 MB
 #  Solved   : 2026-07-30
 # ─────────────────────────────────────────────────
 
@@ -20,16 +20,18 @@ class Solution(object):
             if obstacleGrid[0][i]==1:
                 break
             dp[i]=1
-        row=0
+        row=n
         for i in range(n):
             if obstacleGrid[i][0]==1:
                 row=i
                 break
         for i in range(1,n):
+            left=0 if i>=row else 1
             for j in range(1,m):
                 if obstacleGrid[i][j]==1: continue
                 up=dp[j] if obstacleGrid[i-1][j]==0 else 0
-                left=dp[j-1] if obstacleGrid[i][j-1]==0 else 0
+                if obstacleGrid[i][j-1]==1: 
+                    left=0
                 dp[j]=up+left
                 left=dp[j]
         return dp[m-1]
