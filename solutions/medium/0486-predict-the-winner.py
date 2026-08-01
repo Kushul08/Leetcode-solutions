@@ -1,14 +1,13 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0486. Predict the Winner
 #  Difficulty : Medium
-#  Runtime  : 2080 ms
-#  Memory   : 19.2 MB
+#  Runtime  : 2056 ms
+#  Memory   : 19.3 MB
 #  Solved   : 2026-08-01
 # ─────────────────────────────────────────────────
 
 class Solution:
     def predictTheWinner(self, nums: List[int]) -> bool:
-        ans=[False]
         n=len(nums)
         def recur(x,y,diff,flag):
             if y==x:
