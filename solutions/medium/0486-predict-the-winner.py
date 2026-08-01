@@ -1,14 +1,17 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0486. Predict the Winner
 #  Difficulty : Medium
-#  Runtime  : 2056 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 865 ms
+#  Memory   : 464.8 MB
 #  Solved   : 2026-08-01
 # ─────────────────────────────────────────────────
 
+from functools import lru_cache
 class Solution:
     def predictTheWinner(self, nums: List[int]) -> bool:
         n=len(nums)
+
+        @lru_cache(None)
         def recur(x,y,diff,flag):
             if y==x:
                 if flag: 
