@@ -2,16 +2,14 @@
 #  Problem : 0877. Stone Game
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Memory   : 19.4 MB
 #  Solved   : 2026-08-02
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def stoneGame(self, piles):
-        """
-        :type piles: List[int]
-        :rtype: bool
-        """
+from functools import lru_cache
+class Solution:
+    def stoneGame(self, piles: List[int]) -> bool:
+        @lru_cache()
         def recur(i,j,diff,turn):
             if i==j:
                 if turn:
