@@ -2,7 +2,7 @@
 #  Problem : 0877. Stone Game
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.6 MB
+#  Memory   : 12.4 MB
 #  Solved   : 2026-08-02
 # ─────────────────────────────────────────────────
 
@@ -24,5 +24,5 @@ class Solution(object):
             else:
                 return min(recur(i+1,j,diff-piles[i],True),
                 recur(i,j-1,diff-piles[j],True))
-        return recur(0,0,0,True)>=0
+        return recur(0,0,0,True)>0
             
