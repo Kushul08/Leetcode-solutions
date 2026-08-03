@@ -1,17 +1,20 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0416. Partition Equal Subset Sum
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.4 MB
+#  Runtime  : 11 ms
+#  Memory   : 34.7 MB
 #  Solved   : 2026-08-03
 # ─────────────────────────────────────────────────
 
+from functools import lru_cache
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         if (sum(nums)&1)==1:
             return False
         n=len(nums)
         k=sum(nums)//2
+
+        @lru_cache(None)
         def recur(i,target):
             if i==n:
                 return target==0
