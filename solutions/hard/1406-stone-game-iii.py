@@ -1,15 +1,18 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1406. Stone Game III
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 19.4 MB
+#  Runtime  : 261 ms
+#  Memory   : 19.2 MB
 #  Solved   : 2026-08-03
 # ─────────────────────────────────────────────────
 
+from functools import lru_cache
 class Solution:
     def stoneGameIII(self, stoneValue: List[int]) -> str:
         
         n=len(stoneValue)
+
+        @lru_cache(None)
         def recur(i,diff,turn):
             if i>=n:
                 return diff
