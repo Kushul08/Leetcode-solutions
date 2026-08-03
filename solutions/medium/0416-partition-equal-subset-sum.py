@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0416. Partition Equal Subset Sum
 #  Difficulty : Medium
-#  Runtime  : 1046 ms
-#  Memory   : 19.1 MB
+#  Runtime  : 784 ms
+#  Memory   : 19.3 MB
 #  Solved   : 2026-08-03
 # ─────────────────────────────────────────────────
 
@@ -25,5 +25,7 @@ class Solution:
                 temp[j]=dp[j]
                 if nums[i]<=j:
                     temp[j]=temp[j] or dp[j-nums[i]]
+                if j==k and temp[j]==True:
+                    return True
             dp=temp
         return dp[k]
