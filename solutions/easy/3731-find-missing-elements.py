@@ -1,18 +1,19 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3731. Find Missing Elements
 #  Difficulty : Easy
-#  Runtime  : 1 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 3 ms
+#  Memory   : 19.4 MB
 #  Solved   : 2026-08-04
 # ─────────────────────────────────────────────────
 
 class Solution:
     def findMissingElements(self, nums: List[int]) -> List[int]:
-        mini=min(nums)
-        maxi=max(nums)
-        seen=set(nums)
+        nums.sort()
         ans=[]
-        for i in range(mini,maxi+1):
-            if i not in seen:
-                ans.append(i)
+        i=0
+        for num in range(min(nums),max(nums)):
+            if num!=nums[i]:
+                ans.append(num)
+            else:
+                i+=1
         return ans
