@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3310. Remove Methods From Project
 #  Difficulty : Medium
-#  Runtime  : 1234 ms
-#  Memory   : 196.8 MB
+#  Runtime  : 1173 ms
+#  Memory   : 197.2 MB
 #  Solved   : 2026-08-05
 # ─────────────────────────────────────────────────
 
@@ -30,10 +30,9 @@ class Solution(object):
             for neigh in adj_list[node]:
                 dfs(neigh)                
         dfs(k)
-        ans=[i for i in range(n)]
         for node in suspicious:
             for par in parent[node]:
                 if par not in suspicious:
-                    return ans
+                    return [i for i in range(n)]
 
         return [i for i in range(n) if i not in suspicious]
