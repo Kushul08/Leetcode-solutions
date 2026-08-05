@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3310. Remove Methods From Project
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 1234 ms
+#  Memory   : 196.8 MB
 #  Solved   : 2026-08-05
 # ─────────────────────────────────────────────────
 
@@ -36,6 +36,4 @@ class Solution(object):
                 if par not in suspicious:
                     return ans
 
-        for node in suspicious:
-            ans.remove(node)
-        return ans
+        return [i for i in range(n) if i not in suspicious]
