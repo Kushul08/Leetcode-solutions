@@ -1,12 +1,12 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2035. Partition Array Into Two Arrays to Minimize Sum Difference
 #  Difficulty : Hard
-#  Runtime  : 1999 ms
-#  Memory   : 22.2 MB
+#  Runtime  : 1950 ms
+#  Memory   : 22.3 MB
 #  Solved   : 2026-08-07
 # ─────────────────────────────────────────────────
 
-from bisect import bisect_left, bisect_right
+from bisect import bisect_left
 class Solution:
     def minimumDifference(self, nums: List[int]) -> int:
         n=len(nums)//2
