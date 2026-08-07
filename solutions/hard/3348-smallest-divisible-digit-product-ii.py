@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3348. Smallest Divisible Digit Product II
 #  Difficulty : Hard
-#  Runtime  : 1 ms
-#  Memory   : 19.5 MB
+#  Runtime  : 306 ms
+#  Memory   : 33.8 MB
 #  Solved   : 2026-08-07
 # ─────────────────────────────────────────────────
 
@@ -23,7 +23,7 @@ class Solution:
         nums=list(num)
         for i in range(n):
             if nums[i]=='0':
-                pos==i
+                pos=i
                 break
             rem[i+1]=rem[i]//math.gcd(rem[i],int(num[i]))
         if rem[n]==1:
