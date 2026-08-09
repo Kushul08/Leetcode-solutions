@@ -1,22 +1,21 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1140. Stone Game II
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 429 ms
+#  Memory   : 34.5 MB
 #  Solved   : 2026-08-09
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def stoneGameII(self, piles):
-        """
-        :type piles: List[int]
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def stoneGameII(self, piles: List[int]) -> int:
         n=len(piles)
         alice=[0]
-        def recur(i,a,b,m,turn):
+
+        @lru_cache(None)
+        def recur(i,m,turn):
             if i==n:
-                return a
+                return 0
             
             
             if turn:
@@ -25,14 +24,13 @@ class Solution(object):
                 for x in range(i,min(i+2*m-1,n-1)+1):
                     stones=sum(piles[i:x+1])
                     taken=x-i+1
-                    ans=max(ans,recur(x+1,a+stones,b,max(m,taken),False))
+                    ans=max(ans,recur(x+1,max(m,taken),False)+stones)
                 return ans
             else:
                 ans=float('inf')
 
                 for x in range(i,min(i+2*m-1,n-1)+1):
-                    stones=sum(piles[i:x+1])
                     taken=x-i+1
-                    ans=min(ans,recur(x+1,a,b+stones,max(m,taken),True))
+                    ans=min(ans,recur(x+1,max(m,taken),True))
                 return ans
-        return recur(0,0,0,1,True)
+        return recur(0,1,True)
