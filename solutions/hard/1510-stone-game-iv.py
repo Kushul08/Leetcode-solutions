@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1510. Stone Game IV
 #  Difficulty : Hard
-#  Runtime  : 663 ms
-#  Memory   : 20 MB
+#  Runtime  : 493 ms
+#  Memory   : 19.8 MB
 #  Solved   : 2026-08-10
 # ─────────────────────────────────────────────────
 
@@ -24,7 +24,8 @@ class Solution:
             sign=True
             for j in squares:
                 sign=sign and dp[i-j]
-                
+                if sign==False:
+                    break
             dp[i]=True if sign==False else False
             
         return dp[n]
