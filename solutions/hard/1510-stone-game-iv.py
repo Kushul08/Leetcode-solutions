@@ -1,18 +1,14 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1510. Stone Game IV
 #  Difficulty : Hard
-#  Runtime  : 830 ms
-#  Memory   : 15.8 MB
+#  Runtime  : 664 ms
+#  Memory   : 20 MB
 #  Solved   : 2026-08-10
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def winnerSquareGame(self, n):
-        """
-        :type n: int
-        :rtype: bool
-        """
-        powers=set([i*i for i in range(1,350)])
+powers=set([i*i for i in range(1,350)])
+class Solution:
+    def winnerSquareGame(self, n: int) -> bool:
         if n in powers:
             return True
         dp=[0]*(n+1)
