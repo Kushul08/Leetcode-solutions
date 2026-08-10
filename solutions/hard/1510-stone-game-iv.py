@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1510. Stone Game IV
 #  Difficulty : Hard
-#  Runtime  : 664 ms
+#  Runtime  : 663 ms
 #  Memory   : 20 MB
 #  Solved   : 2026-08-10
 # ─────────────────────────────────────────────────
@@ -9,6 +9,7 @@
 powers=set([i*i for i in range(1,350)])
 class Solution:
     def winnerSquareGame(self, n: int) -> bool:
+        global powers
         if n in powers:
             return True
         dp=[0]*(n+1)
@@ -23,6 +24,7 @@ class Solution:
             sign=True
             for j in squares:
                 sign=sign and dp[i-j]
+                
             dp[i]=True if sign==False else False
             
         return dp[n]
