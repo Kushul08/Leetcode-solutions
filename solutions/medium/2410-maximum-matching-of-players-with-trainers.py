@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2410. Maximum Matching of Players With Trainers
 #  Difficulty : Medium
-#  Runtime  : 115 ms
-#  Memory   : 22.3 MB
+#  Runtime  : 107 ms
+#  Memory   : 24.1 MB
 #  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
 
@@ -15,13 +15,11 @@ class Solution(object):
         """
         players.sort()
         trainers.sort()
-        i=j=0
+        i=0
         count=0
-        while i<len(players) and j<len(trainers):
+        for j in range(len(trainers)):
+            if i==len(players): break
             if players[i]<=trainers[j]:
                 count+=1
                 i+=1
-                j+=1
-            else:
-                j+=1
         return count
