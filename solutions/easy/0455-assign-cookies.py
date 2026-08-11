@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0455. Assign Cookies
 #  Difficulty : Easy
-#  Runtime  : 31 ms
+#  Runtime  : 35 ms
 #  Memory   : 14.1 MB
 #  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
@@ -21,7 +21,5 @@ class Solution(object):
             if g[i]<=s[j]:
                 count+=1
                 i+=1
-                j+=1
-            else:
-                j+=1
+            j+=1
         return count
