@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0322. Coin Change
 #  Difficulty : Medium
-#  Runtime  : 32 ms
-#  Memory   : 28.6 MB
+#  Runtime  : 0 ms
+#  Memory   : 19.3 MB
 #  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
 
@@ -15,17 +15,20 @@ class Solution(object):
         """
         n=len(coins)
         steps=[float('inf')]
-        def recur(i,target,step):
+        def recur(i,target):
             if i==-1:
                 if target==0:
-                    steps[0]=min(steps[0],step)
-                return
+                    return 0
+                return float('inf')
+            pick=float('inf')
+            pick_stay=float('inf')
             if coins[i]<=target:
-                pick=recur(i-1,target-coins[i],step+1)
-                pick_stay=recur(i,target-coins[i],step+1)
-            unpick=recur(i-1,target,step)
+                pick=recur(i-1,target-coins[i])+1
+                pick_stay=recur(i,target-coins[i])+1
+            unpick=recur(i-1,target)
 
-        recur(n-1,amount,0)
-        if steps[0]!=float('inf'):
-            return steps[0]
+            return min(pick,unpick,pick_stay)
+        coin_change=recur(n-1,amount)
+        if coin_change!=float('inf'):
+            return coin_change
         return -1
