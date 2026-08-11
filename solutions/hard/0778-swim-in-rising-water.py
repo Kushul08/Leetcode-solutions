@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0778. Swim in Rising Water
 #  Difficulty : Hard
-#  Runtime  : 32 ms
+#  Runtime  : 29 ms
 #  Memory   : 12.4 MB
-#  Solved   : 2026-07-21
+#  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
 
 from heapq import heappush, heappop
