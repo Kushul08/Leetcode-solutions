@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0322. Coin Change
 #  Difficulty : Medium
-#  Runtime  : 1893 ms
-#  Memory   : 133.7 MB
+#  Runtime  : 1171 ms
+#  Memory   : 93.6 MB
 #  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
 
@@ -18,14 +18,12 @@ class Solution:
                 return float('inf')
             if dp[i][target]!=-1:
                 return dp[i][target]
-            pick=float('inf')
             pick_stay=float('inf')
             if coins[i]<=target:
-                pick=recur(i-1,target-coins[i])+1
                 pick_stay=recur(i,target-coins[i])+1
             unpick=recur(i-1,target)
 
-            dp[i][target]=min(pick,unpick,pick_stay)
+            dp[i][target]=min(unpick,pick_stay)
             return dp[i][target]
 
         coin_change=recur(n-1,amount)
