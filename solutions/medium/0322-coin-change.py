@@ -1,20 +1,18 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0322. Coin Change
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 2458 ms
+#  Memory   : 671.2 MB
 #  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def coinChange(self, coins, amount):
-        """
-        :type coins: List[int]
-        :type amount: int
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+
         n=len(coins)
-        steps=[float('inf')]
+        
+        @lru_cache(None)
         def recur(i,target):
             if i==-1:
                 if target==0:
