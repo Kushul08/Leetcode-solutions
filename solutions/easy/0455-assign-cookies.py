@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0455. Assign Cookies
 #  Difficulty : Easy
-#  Runtime  : 35 ms
-#  Memory   : 14.1 MB
+#  Runtime  : 28 ms
+#  Memory   : 13.9 MB
 #  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
 
@@ -17,9 +17,9 @@ class Solution(object):
         s.sort()
         i=j=0
         count=0
-        while i<len(g) and j<len(s):
+        for j in range(len(s)):
+            if i==len(g): break
             if g[i]<=s[j]:
                 count+=1
                 i+=1
-            j+=1
         return count
