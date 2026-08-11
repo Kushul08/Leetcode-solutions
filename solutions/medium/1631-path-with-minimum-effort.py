@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1631. Path With Minimum Effort
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.5 MB
-#  Solved   : 2026-06-26
+#  Runtime  : 387 ms
+#  Memory   : 13.1 MB
+#  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
 
 from heapq import heappop, heappush
@@ -22,6 +22,8 @@ class Solution(object):
         directions=[(-1,0),(0,-1),(0,1),(1,0)]
         while queue:
             diff,x,y=heappop(queue)
+            if x==n-1 and y==m-1: # here we write it directly insted of writting near the insetion because we always get the min diff while popping form the heap
+                return diff
             if diff>max_abs[x][y]:
                 continue
             for dx,dy in directions:
