@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2996. Smallest Missing Integer Greater Than Sequential Prefix Sum
 #  Difficulty : Easy
-#  Runtime  : 1 ms
+#  Runtime  : 0 ms
 #  Memory   : 12.4 MB
 #  Solved   : 2026-08-11
 # ─────────────────────────────────────────────────
@@ -18,6 +18,7 @@ class Solution(object):
                 sums+=nums[i]
             else:
                 break
+        nums_set=set(nums)
         for x in range(sums,1276):
-            if x not in nums:
+            if x not in nums_set:
                 return x 
