@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2958. Length of Longest Subarray With at Most K Frequency
 #  Difficulty : Medium
-#  Runtime  : 396 ms
-#  Memory   : 21.3 MB
+#  Runtime  : 416 ms
+#  Memory   : 21.7 MB
 #  Solved   : 2026-08-12
 # ─────────────────────────────────────────────────
 
@@ -20,12 +20,11 @@ class Solution(object):
         while r<len(nums):
             num=nums[r]
             freq[num]=freq.get(num,0)+1
-            if freq[num]>k:
-                while freq[num]>k:
-                    freq[nums[l]]-=1
-                    if freq[nums[l]]==0:
-                        del freq[nums[l]]
-                    l+=1
+            while freq[num]>k:
+                freq[nums[l]]-=1
+                if freq[nums[l]]==0:
+                    del freq[nums[l]]
+                l+=1
             length=max(length,r-l+1)
             r+=1
         return length
