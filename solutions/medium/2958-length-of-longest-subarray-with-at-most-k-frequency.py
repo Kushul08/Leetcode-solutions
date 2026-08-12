@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2958. Length of Longest Subarray With at Most K Frequency
 #  Difficulty : Medium
-#  Runtime  : 416 ms
-#  Memory   : 21.7 MB
+#  Runtime  : 350 ms
+#  Memory   : 21.6 MB
 #  Solved   : 2026-08-12
 # ─────────────────────────────────────────────────
 
@@ -14,11 +14,8 @@ class Solution(object):
         :rtype: int
         """
         freq={}
-        l=0
-        r=0
-        length=0
-        while r<len(nums):
-            num=nums[r]
+        l,length=0,0
+        for r,num in enumerate(nums):
             freq[num]=freq.get(num,0)+1
             while freq[num]>k:
                 freq[nums[l]]-=1
@@ -26,5 +23,4 @@ class Solution(object):
                     del freq[nums[l]]
                 l+=1
             length=max(length,r-l+1)
-            r+=1
         return length
