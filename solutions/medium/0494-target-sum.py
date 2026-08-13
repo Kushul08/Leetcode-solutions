@@ -1,26 +1,22 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0494. Target Sum
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.2 MB
+#  Runtime  : 135 ms
+#  Memory   : 79.9 MB
 #  Solved   : 2026-08-13
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def findTargetSumWays(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
         n=len(nums)
-        ans=[0]
+
+        @lru_cache(None)
         def recur(i,exp):
             if i==-1:
                 if exp==target:
-                    ans[0]+=1
-                return
-            recur(i-1,exp+nums[i])
-            recur(i-1,exp-nums[i])
-        recur(n-1,0)
-        return ans[0]
+                    return 1
+                return 0
+            return recur(i-1,exp+nums[i])+recur(i-1,exp-nums[i])
+        return recur(n-1,0)
+        
