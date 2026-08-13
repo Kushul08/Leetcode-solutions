@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0494. Target Sum
 #  Difficulty : Medium
-#  Runtime  : 55 ms
-#  Memory   : 23.4 MB
+#  Runtime  : 1 ms
+#  Memory   : 19.2 MB
 #  Solved   : 2026-08-13
 # ─────────────────────────────────────────────────
 
@@ -11,19 +11,17 @@ class Solution:
         n=len(nums)
         if (target+sum(nums))%2!=0 or (target+sum(nums))<0 : return 0
         required=(target+sum(nums))//2
-        # if required<0: required+=sum(nums)
-        dp=[[-1]*(required+1) for _ in range(n)]
-        def recur(i,exp):
-            if i==-1:
-                if exp==0:
-                    return 1
-                return 0
-            if dp[i][exp]!=-1:
-                return dp[i][exp]
-            pick=0
-            if nums[i]<=exp:
-                pick=recur(i-1,exp-nums[i])
-            unpick=recur(i-1,exp)
-            dp[i][exp]=pick+unpick
-            return dp[i][exp]
-        return recur(n-1,required)
+        dp=[[0]*(required+1) for _ in range(n)]
+        for i in range(n):
+            dp[i][0]=0
+        if nums[0]<=required: dp[0][nums[0]]=1
+        dp[0][0]=1
+        for i in range(1,n):
+            for j in range(required+1):
+                pick=0
+                if nums[i]<=j:
+                    pick=dp[i-1][j-nums[i]]
+                unpick=dp[i-1][j]
+                dp[i][j]=pick+unpick
+        return dp[n-1][required]
+        
