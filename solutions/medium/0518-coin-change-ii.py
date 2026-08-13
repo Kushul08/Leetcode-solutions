@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0518. Coin Change II
 #  Difficulty : Medium
-#  Runtime  : 371 ms
+#  Runtime  : 362 ms
 #  Memory   : 12.8 MB
 #  Solved   : 2026-08-13
 # ─────────────────────────────────────────────────
@@ -14,12 +14,7 @@ class Solution(object):
         :rtype: int
         """
         n=len(coins)
-        dp=[]
-        for i in range(amount+1):
-            if i%coins[0]==0:
-                dp.append(1)
-            else:
-                dp.append(0)
+        dp=[1 if i%coins[0]==0 else 0 for i in range(amount+1)]
         dp[0]=1
         for i in range(1,n):
             for j in range(coins[i],amount+1):
