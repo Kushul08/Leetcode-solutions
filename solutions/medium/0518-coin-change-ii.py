@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0518. Coin Change II
 #  Difficulty : Medium
-#  Runtime  : 479 ms
-#  Memory   : 12.7 MB
+#  Runtime  : 378 ms
+#  Memory   : 12.8 MB
 #  Solved   : 2026-08-13
 # ─────────────────────────────────────────────────
 
@@ -20,7 +20,7 @@ class Solution(object):
         for j in range(coins[0],amount+1,coins[0]):
             dp[j]=1
         for i in range(1,n):
-            for j in range(1,amount+1):
+            for j in range(coins[i],amount+1):
                 pick=0
                 if coins[i]<=j:
                     pick=dp[j-coins[i]]
