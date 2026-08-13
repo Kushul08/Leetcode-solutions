@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0494. Target Sum
 #  Difficulty : Medium
-#  Runtime  : 135 ms
-#  Memory   : 79.9 MB
+#  Runtime  : 165 ms
+#  Memory   : 71.7 MB
 #  Solved   : 2026-08-13
 # ─────────────────────────────────────────────────
 
@@ -11,12 +11,15 @@ class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         n=len(nums)
 
-        @lru_cache(None)
+        dp={}     
         def recur(i,exp):
             if i==-1:
                 if exp==target:
                     return 1
                 return 0
-            return recur(i-1,exp+nums[i])+recur(i-1,exp-nums[i])
+            if (i,exp) in dp:
+                return dp[(i,exp)]
+            dp[(i,exp)]=recur(i-1,exp+nums[i])+recur(i-1,exp-nums[i])
+            return dp[(i,exp)]
         return recur(n-1,0)
         
