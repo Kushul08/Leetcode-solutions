@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0494. Target Sum
 #  Difficulty : Medium
-#  Runtime  : 491 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 0 ms
+#  Memory   : 19.5 MB
 #  Solved   : 2026-08-13
 # ─────────────────────────────────────────────────
 
@@ -14,11 +14,17 @@ class Solution(object):
         :rtype: int
         """
         n=len(nums)
+        if (target+sum(nums))%2!=0: return 0
         required=(target+sum(nums))/2
         def recur(i,exp):
             if i==-1:
-                if exp==required:
+                if exp==0:
                     return 1
                 return 0
-            return recur(i-1,exp+nums[i])+recur(i-1,exp)
-        return recur(n-1,0)
+            pick=0
+            if nums[i]<=exp:
+                pick=recur(i-1,exp-nums[i])
+            unpick=recur(i-1,exp)
+            return pick+unpick
+            
+        return recur(n-1,required)
