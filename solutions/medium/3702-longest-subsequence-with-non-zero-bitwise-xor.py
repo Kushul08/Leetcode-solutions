@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3702. Longest Subsequence With Non-Zero Bitwise XOR
 #  Difficulty : Medium
-#  Runtime  : 63 ms
+#  Runtime  : 61 ms
 #  Memory   : 22.7 MB
 #  Solved   : 2026-08-15
 # ─────────────────────────────────────────────────
@@ -18,8 +18,9 @@ class Solution(object):
         for num in nums:
             xor^=num
             if num!=0: non_zero=True
+            
         if xor!=0:
             return n
-        if non_zero:
+        elif non_zero:
             return n-1
         return 0
