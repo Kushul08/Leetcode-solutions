@@ -1,18 +1,18 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3702. Longest Subsequence With Non-Zero Bitwise XOR
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.2 MB
+#  Runtime  : 1 ms
+#  Memory   : 20.1 MB
 #  Solved   : 2026-08-15
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def longestSubsequence(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def longestSubsequence(self, nums: List[int]) -> int:
+
         n=len(nums)
+
+        @lru_cache(None)
         def recur(i,take,xor):
             if i==n:
                 if xor!=0:
