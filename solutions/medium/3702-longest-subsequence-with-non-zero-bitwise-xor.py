@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3702. Longest Subsequence With Non-Zero Bitwise XOR
 #  Difficulty : Medium
-#  Runtime  : 1 ms
-#  Memory   : 20.1 MB
+#  Runtime  : 0 ms
+#  Memory   : 20 MB
 #  Solved   : 2026-08-15
 # ─────────────────────────────────────────────────
 
@@ -13,14 +13,14 @@ class Solution:
         n=len(nums)
 
         @lru_cache(None)
-        def recur(i,take,xor):
+        def recur(i,xor):
             if i==n:
                 if xor!=0:
-                    return take
-                return 0
-            pick=recur(i+1,take+1,xor^nums[i])
-            unpick=recur(i+1,take,xor)
+                    return 0
+                return float('-inf')
+            pick=recur(i+1,xor^nums[i])+1
+            unpick=recur(i+1,xor)
 
             return max(pick,unpick)
         
-        return recur(0,0,0)
+        return recur(0,0)
