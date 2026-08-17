@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1143. Longest Common Subsequence
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Runtime  : 506 ms
+#  Memory   : 33.6 MB
 #  Solved   : 2026-08-17
 # ─────────────────────────────────────────────────
 
@@ -18,20 +18,18 @@ class Solution(object):
         if text1[0]==text2[0]: dp[0][0]=1
         for i in range(1,n):
             if text2[0]==text1[i]:
-                dp[0][i]=dp[0][i-1]+1
+                dp[0][i]=1
             else: dp[0][i]=dp[0][i-1]
         for j in range(1,m):
             if text1[0]==text2[j]:
-                dp[j][0]=dp[j-1][0]+1
+                dp[j][0]=1
             else: 
                 dp[j][0]=dp[j-1][0]
 
         for i in range(1,m):
             for j in range(1,n):
-                
                 if text2[i]==text1[j]:
                     dp[i][j]=dp[i-1][j-1]+1
                 else:
                     dp[i][j]=max(dp[i-1][j],dp[i][j-1])
-        print(dp)
         return dp[m-1][n-1]
