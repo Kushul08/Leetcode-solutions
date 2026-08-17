@@ -1,19 +1,18 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1143. Longest Common Subsequence
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 1054 ms
+#  Memory   : 318.6 MB
 #  Solved   : 2026-08-17
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def longestCommonSubsequence(self, text1, text2):
-        """
-        :type text1: str
-        :type text2: str
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        
         n,m=len(text1),len(text2)
+
+        @lru_cache(None)
         def recur(i,j):
             if i<0 or j<0: return 0
             if text1[i]==text2[j]:
