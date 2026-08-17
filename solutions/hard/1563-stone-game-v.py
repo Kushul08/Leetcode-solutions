@@ -1,25 +1,29 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1563. Stone Game V
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 27 ms
+#  Memory   : 20.9 MB
 #  Solved   : 2026-08-17
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def stoneGameV(self, stoneValue):
-        """
-        :type stoneValue: List[int]
-        :rtype: int
-        """
-        
+from functools import lru_cache
+class Solution:
+    def stoneGameV(self, stoneValue: List[int]) -> int:
+        n=len(stoneValue)
+        if n<2:
+            return 0
+        prefix=[0]*(n+1)
+        for i in range(n):
+            prefix[i+1]=prefix[i]+stoneValue[i]
+
+        @lru_cache(None)
         def recur(l,r):
             if r-l+1<2:
                 return 0
             ans=0
-            for k in range(l,r+1):
-                left_sum=sum(stoneValue[l:k+1])
-                right_sum=sum(stoneValue[k+1:r+1])
+            for k in range(l,r):
+                left_sum=prefix[k+1]-prefix[l]
+                right_sum=prefix[r+1]-prefix[k+1]
 
                 if left_sum<right_sum:
                     curr=recur(l,k)+left_sum
@@ -29,4 +33,4 @@ class Solution(object):
                     curr=left_sum+max(recur(l,k),recur(k+1,r))
                 ans=max(ans,curr)
             return ans
-        return recur(0,len(stoneValue)-1)
+        return recur(0,n-1)
