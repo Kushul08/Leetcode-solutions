@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1143. Longest Common Subsequence
 #  Difficulty : Medium
-#  Runtime  : 409 ms
+#  Runtime  : 415 ms
 #  Memory   : 12.4 MB
 #  Solved   : 2026-08-17
 # ─────────────────────────────────────────────────
@@ -14,22 +14,30 @@ class Solution(object):
         :rtype: int
         """
         n,m=len(text1),len(text2)
-        dp=[0]*n 
-        if text1[0]==text2[0]: dp[0]=1
-        for i in range(1,n):
-            if text2[0]==text1[i]:
+        s1=''
+        s2=''
+        if n<m:
+            s1=text1
+            s2=text2
+        else:
+            s1=text2
+            s2=text1
+        
+        dp=[0]*len(s1)
+        dp[0]= 1 if s1[0]==s2[0] else 0
+        for i in range(1,len(s1)):
+            if s1[i]==s2[0]:
                 dp[i]=1
-            elif i>0: 
+            else:
                 dp[i]=dp[i-1]
-       
-
-        for i in range(1,m):
-            temp=[0]*n
-            temp[0]= 1 if text2[i]==text1[0] else dp[0]
-            for j in range(1,n):
-                if text2[i]==text1[j]:
+        
+        for i in range(1,len(s2)):
+            temp=[0]*len(s1)
+            temp[0]= 1 if s1[0]==s2[i] else dp[0]
+            for j in range(1,len(s1)):
+                if s2[i]==s1[j]:
                     temp[j]=dp[j-1]+1
                 else:
                     temp[j]=max(temp[j-1],dp[j])
             dp=temp
-        return dp[n-1]
+        return dp[len(s1)-1]
