@@ -1,36 +1,30 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1563. Stone Game V
 #  Difficulty : Hard
-#  Runtime  : 27 ms
-#  Memory   : 20.9 MB
+#  Runtime  : 8565 ms
+#  Memory   : 85.4 MB
 #  Solved   : 2026-08-17
 # ─────────────────────────────────────────────────
 
-from functools import lru_cache
 class Solution:
     def stoneGameV(self, stoneValue: List[int]) -> int:
-        n=len(stoneValue)
-        if n<2:
-            return 0
-        prefix=[0]*(n+1)
-        for i in range(n):
-            prefix[i+1]=prefix[i]+stoneValue[i]
-
         @lru_cache(None)
-        def recur(l,r):
-            if r-l+1<2:
+        def dfs(left: int, right: int) -> int:
+            if left == right:
                 return 0
-            ans=0
-            for k in range(l,r):
-                left_sum=prefix[k+1]-prefix[l]
-                right_sum=prefix[r+1]-prefix[k+1]
 
-                if left_sum<right_sum:
-                    curr=recur(l,k)+left_sum
-                elif right_sum<left_sum:
-                    curr=recur(k+1,r)+right_sum
+            total = sum(stoneValue[left : right + 1])
+            suml = ans = 0
+            for i in range(left, right):
+                suml += stoneValue[i]
+                sumr = total - suml
+                if suml < sumr:
+                    ans = max(ans, dfs(left, i) + suml)
+                elif suml > sumr:
+                    ans = max(ans, dfs(i + 1, right) + sumr)
                 else:
-                    curr=left_sum+max(recur(l,k),recur(k+1,r))
-                ans=max(ans,curr)
+                    ans = max(ans, max(dfs(left, i), dfs(i + 1, right)) + suml)
             return ans
-        return recur(0,n-1)
+
+        n = len(stoneValue)
+        return dfs(0, n - 1)
