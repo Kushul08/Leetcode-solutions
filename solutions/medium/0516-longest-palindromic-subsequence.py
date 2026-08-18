@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0516. Longest Palindromic Subsequence
 #  Difficulty : Medium
-#  Runtime  : 38 ms
-#  Memory   : 14 MB
+#  Runtime  : 1625 ms
+#  Memory   : 33.7 MB
 #  Solved   : 2026-08-18
 # ─────────────────────────────────────────────────
 
@@ -23,7 +23,7 @@ class Solution(object):
             else:
                 dp[0][i]=dp[0][i-1]
         for i in range(1,n):
-            if s1[i]==s2[i]:
+            if s1[i]==s2[0]:
                 dp[i][0]=1
             else:
                 dp[i][0]=dp[i-1][0]
