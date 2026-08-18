@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0516. Longest Palindromic Subsequence
 #  Difficulty : Medium
-#  Runtime  : 1392 ms
-#  Memory   : 67.4 MB
+#  Runtime  : 38 ms
+#  Memory   : 14 MB
 #  Solved   : 2026-08-18
 # ─────────────────────────────────────────────────
 
@@ -16,15 +16,21 @@ class Solution(object):
         s1=s
         s2=s[::-1]
         dp=[[-1]*n for _ in range(n)]
-        def recur(i,j):
-            if i<0 or j<0:
-                return 0
-            if dp[i][j]!=-1:
-                return dp[i][j]
-            if s1[i]==s2[j]:
-                dp[i][j]=recur(i-1,j-1)+1
-                return dp[i][j]
+        dp[0][0]=1 if s1[0]==s2[0] else 0
+        for i in range(1,n):
+            if s1[0]==s2[i]:
+                dp[0][i]=1
             else:
-                dp[i][j]=max(recur(i,j-1),recur(i-1,j))
-                return dp[i][j]
-        return recur(n-1,n-1)
+                dp[0][i]=dp[0][i-1]
+        for i in range(1,n):
+            if s1[i]==s2[i]:
+                dp[i][0]=1
+            else:
+                dp[i][0]=dp[i-1][0]
+        for i in range(1,n):
+            for j in range(1,n):
+                if s1[i]==s2[j]:
+                    dp[i][j]=dp[i-1][j-1]+1
+                else:
+                    dp[i][j]=max(dp[i][j-1],dp[i-1][j])
+        return dp[n-1][n-1]
