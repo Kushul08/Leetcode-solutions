@@ -1,25 +1,32 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1312. Minimum Insertion Steps to Make a String Palindrome
 #  Difficulty : Hard
-#  Runtime  : 1171 ms
-#  Memory   : 371.4 MB
+#  Runtime  : 1274 ms
+#  Memory   : 27 MB
 #  Solved   : 2026-08-19
 # ─────────────────────────────────────────────────
 
-from functools import lru_cache
-class Solution:
-    def minInsertions(self, s: str) -> int:
+class Solution(object):
+    def minInsertions(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
         s1=s
         s2=s[::-1]
 
         n=len(s)
-
-        @lru_cache(None)
+        dp=[[-1]*n for _ in range(n)]
         def recur(i,j):
             if i<0 or j<0:
-                    return 0
+                return 0
+            if dp[i][j]!=-1:
+                return dp[i][j]
             if s1[i]==s2[j]:
-                return recur(i-1,j-1)+1
+                dp[i][j]=recur(i-1,j-1)+1
+                return dp[i][j]
             else:
-                return max(recur(i,j-1),recur(i-1,j))
+                dp[i][j]=max(recur(i,j-1),recur(i-1,j))
+                return dp[i][j]
+
         return n-recur(n-1,n-1)
