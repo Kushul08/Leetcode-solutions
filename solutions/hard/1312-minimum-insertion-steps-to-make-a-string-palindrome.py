@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1312. Minimum Insertion Steps to Make a String Palindrome
 #  Difficulty : Hard
-#  Runtime  : 795 ms
-#  Memory   : 14.6 MB
+#  Runtime  : 0 ms
+#  Memory   : 12.4 MB
 #  Solved   : 2026-08-20
 # ─────────────────────────────────────────────────
 
@@ -16,7 +16,7 @@ class Solution(object):
         s2=s[::-1]
 
         n=len(s)
-        dp=[[0]*(n+1) for _ in range(n+1)]
+        dp=[[0]*(n+1)
         
         for i in range(1,n+1):
             for j in range(1,n+1):
