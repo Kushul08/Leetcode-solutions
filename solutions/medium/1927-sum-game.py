@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1927. Sum Game
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 201 ms
+#  Memory   : 16.5 MB
 #  Solved   : 2026-08-23
 # ─────────────────────────────────────────────────
 
@@ -26,8 +26,4 @@ class Solution(object):
                     d+=int(num[i])
                 else:
                     d-=int(num[i])
-        if l==r:
-            if d==0:
-                return False
-            return True
-        return 9*abs(r-l)!=abs(d)*2 
+        return (l+r)%2==1 or d!=(r-l)*9//2
