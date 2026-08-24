@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0583. Delete Operation for Two Strings
 #  Difficulty : Medium
-#  Runtime  : 112 ms
-#  Memory   : 12.4 MB
+#  Runtime  : 133 ms
+#  Memory   : 14.5 MB
 #  Solved   : 2026-08-24
 # ─────────────────────────────────────────────────
 
@@ -13,33 +13,24 @@ class Solution(object):
         :type word2: str
         :rtype: int
         """
-        if len(word1)<len(word2):
-            s1=word1
-            s2=word2
-        else:
-            s1=word2
-            s2=word1
+        n,m=len(word1),len(word2)
 
-        n,m=len(s1),len(s2)
-
-        dp=[0]*n 
-        dp[0]=1 if s1[0]==s2[0] else 0
-        for i in range(1,n):
-            if s1[i]==s2[0]:
-                dp[i]=1
-            else:
-                dp[i]=dp[i-1]
-                
+        dp=[[0]*m for _ in range(n)]
+        dp[0][0]=1 if word1[0]==word2[0] else 0
         for i in range(1,m):
-            temp=[0]*n
-            if s1[0]==s2[i]: 
-                temp[0]=1
+            if word2[i]==word1[0]:
+                dp[0][i]=1
             else:
-                temp[0]=dp[0]
-            for j in range(1,n):
-                if s1[j]==s2[i]:
-                    temp[j]=dp[j-1]+1
+                dp[0][i]=dp[0][i-1]
+        for i in range(1,n):
+            if word1[i]==word2[0]:
+                dp[i][0]=1
+            else:
+                dp[i][0]=dp[i-1][0]
+        for i in range(1,n):
+            for j in range(1,m):
+                if word1[i]==word2[j]:
+                    dp[i][j]=dp[i-1][j-1]+1
                 else:
-                    temp[j]=max(dp[j],temp[j-1])
-            dp=temp
-        return n+m-2*dp[n-1]
+                    dp[i][j]=max(dp[i-1][j],dp[i][j-1])
+        return n+m-2*dp[n-1][m-1]
