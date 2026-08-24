@@ -1,19 +1,18 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0583. Delete Operation for Two Strings
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 143 ms
+#  Memory   : 61 MB
 #  Solved   : 2026-08-24
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def minDistance(self, word1, word2):
-        """
-        :type word1: str
-        :type word2: str
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+
         n,m=len(word1),len(word2)
+
+        @lru_cache(None)
         def recur(i,j):
             if i<0 or j<0:
                 return 0
