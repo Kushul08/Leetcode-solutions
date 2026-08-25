@@ -14,7 +14,7 @@ class Solution(object):
         :rtype: int
         """
         nums_set=set(nums)
-        for i in range(k,101,k):
+        for i in range(k,201,k):
             if i not in nums_set:
                 return i
         
