@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0115. Distinct Subsequences
 #  Difficulty : Hard
-#  Runtime  : 686 ms
-#  Memory   : 240.8 MB
+#  Runtime  : 675 ms
+#  Memory   : 218.5 MB
 #  Solved   : 2026-08-25
 # ─────────────────────────────────────────────────
 
@@ -12,13 +12,11 @@ class Solution:
         n,m=len(s),len(t)
 
         @lru_cache(None)
-        def recur(i,j,match):
+        def recur(i,j):
             if i<0 or j<0:
-                if match==m:
-                    return 1
-                return 0
+                return 1 if j==-1 else 0
             if s[i]==t[j]:
-                return recur(i-1,j-1,match+1)+recur(i-1,j,match)
+                return recur(i-1,j-1)+recur(i-1,j)
             else:
-                return recur(i-1,j,match)
-        return recur(n-1,m-1,0)
+                return recur(i-1,j)
+        return recur(n-1,m-1)
