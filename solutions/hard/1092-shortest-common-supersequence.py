@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1092. Shortest Common Supersequence
 #  Difficulty : Hard
-#  Runtime  : 337 ms
-#  Memory   : 44.4 MB
+#  Runtime  : 339 ms
+#  Memory   : 44.3 MB
 #  Solved   : 2026-08-25
 # ─────────────────────────────────────────────────
 
@@ -33,9 +33,9 @@ class Solution:
                 ans.append(str2[y-1])
                 y-=1
         while x>0:
-            ans.extend(str1[x-1])
+            ans.append(str1[x-1])
             x-=1
         while y>0:
-            ans.extend(str2[y-1])
+            ans.append(str2[y-1])
             y-=1
         return ''.join(ans[::-1])
