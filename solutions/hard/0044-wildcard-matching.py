@@ -1,18 +1,15 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0044. Wildcard Matching
 #  Difficulty : Hard
-#  Runtime  : 3 ms
-#  Memory   : 19.4 MB
+#  Runtime  : 398 ms
+#  Memory   : 149 MB
 #  Solved   : 2026-08-26
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def isMatch(self, s, p):
-        """
-        :type s: str
-        :type p: str
-        :rtype: bool
-        """
+from functools import lru_cache
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        
         n,m=len(s),len(p)
         if n==0 and m!=0:
             if p.count('*')==m:
@@ -23,6 +20,7 @@ class Solution(object):
         if n!=0 and m==0:
             return False
         
+        @lru_cache(None)
         def recur(i,j):
             if i<0 or  j<0:
                 if i<0 and j<0:
