@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0072. Edit Distance
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 47 ms
+#  Memory   : 22.7 MB
 #  Solved   : 2026-08-26
 # ─────────────────────────────────────────────────
 
@@ -18,11 +18,11 @@ class Solution:
             return n
         
         dp=[[0]*(m+1) for _ in range(n+1)]
-        for i in range(n):
-            dp[i][0]=i+1
+        for i in range(n+1):
+            dp[i][0]=i
+        for j in range(m+1):
+            dp[0][j]=j
 
-        for j in range(m):
-            dp[0][j]=j+1
         dp[0][0]=0
         for i in range(1,n+1):
             for j in range(1,m+1):
@@ -32,6 +32,5 @@ class Solution:
                     dp[i][j]=min(1+dp[i-1][j-1],
                                 1+dp[i][j-1],
                                 1+dp[i-1][j])
-        print(dp)     
         return dp[n][m]
             
