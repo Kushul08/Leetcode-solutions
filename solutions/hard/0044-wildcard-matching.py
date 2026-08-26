@@ -14,17 +14,26 @@ class Solution(object):
         :rtype: bool
         """
         n,m=len(s),len(p)
+        if n==0 and m!=0:
+            if p.count('*')==m:
+                return True
+            return False
+        if n==0 and m==0:
+            return True
+        if n!=0 and m==0:
+            return False
         def recur(i,j):
-            if i<0 or j<0:
-                if i<0:
+            if i<0 or  j<0:
+                if (i<0 and j<0) or (i<0 and j==0 and p[j]=='*'):
                     return True
                 return False 
             if s[i]==p[j]:
                 return recur(i-1,j-1)
             elif p[j]=='*':
-                return recur(i-1,j-1) or recur(i-1,j)
+                return recur(i-1,j-1) or recur(i-1,j) or recur(i,j-1)
             elif p[j]=='?':
                 return recur(i-1,j-1)
-            else:
+            elif s[i]!=p[j]:
                 return False
+            return True
         return recur(n-1,m-1)
