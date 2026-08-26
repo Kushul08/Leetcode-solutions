@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0044. Wildcard Matching
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 12.3 MB
+#  Runtime  : 3 ms
+#  Memory   : 19.4 MB
 #  Solved   : 2026-08-26
 # ─────────────────────────────────────────────────
 
@@ -22,10 +22,16 @@ class Solution(object):
             return True
         if n!=0 and m==0:
             return False
+        
         def recur(i,j):
             if i<0 or  j<0:
-                if (i<0 and j<0) or (i<0 and j==0 and p[j]=='*'):
+                if i<0 and j<0:
                     return True
+                elif i<0 and j>=0:
+                    while j>=0 and p[j]=='*':
+                        j-=1
+                    if j<0:
+                        return True
                 return False 
             if s[i]==p[j]:
                 return recur(i-1,j-1)
