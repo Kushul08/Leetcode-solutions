@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0044. Wildcard Matching
 #  Difficulty : Hard
-#  Runtime  : 1386 ms
-#  Memory   : 43.7 MB
+#  Runtime  : 1218 ms
+#  Memory   : 12.6 MB
 #  Solved   : 2026-08-26
 # ─────────────────────────────────────────────────
 
@@ -22,19 +22,21 @@ class Solution(object):
             return True
         if n!=0 and m==0:
             return False
-        dp=[[False]*(m+1) for _ in range(n+1)]
+        dp=[False]*(m+1) 
         for j in range(1,m+1):
             if p[j-1]=='*':
-                dp[0][j]=True
+                dp[j]=True
             else:
                 break
-        dp[0][0]=True
+        dp[0]=True
         for i in range(1,n+1):
+            temp=[False]*(m+1)
             for j in range(1,m+1):
                 if s[i-1]==p[j-1] or p[j-1]=='?':
-                    dp[i][j]=dp[i-1][j-1]
+                    temp[j]=dp[j-1]
                 elif p[j-1]=='*':
-                    dp[i][j]=dp[i-1][j] or dp[i][j-1]
+                    temp[j]=dp[j] or temp[j-1]
                 else:
-                    dp[i][j]=False
-        return dp[n][m]
+                    temp[j]=False
+            dp=temp
+        return dp[m]
