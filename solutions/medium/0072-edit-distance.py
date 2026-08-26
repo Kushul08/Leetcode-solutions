@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0072. Edit Distance
 #  Difficulty : Medium
-#  Runtime  : 17 ms
-#  Memory   : 25.1 MB
+#  Runtime  : 20 ms
+#  Memory   : 22.1 MB
 #  Solved   : 2026-08-26
 # ─────────────────────────────────────────────────
 
@@ -17,7 +17,7 @@ class Solution:
         elif n!=0 and m==0:
             return n
         
-        @lru_cache(None)
+        dp=[[-1]*m for _ in range(n)]
         def recur(i,j):
             if i<0 or j<0:
                 if i>=0:
@@ -25,11 +25,15 @@ class Solution:
                 if j>=0:
                     return j+1
                 return 0
+            if dp[i][j]!=-1:
+                return dp[i][j]
             if word1[i]==word2[j]:
-                return recur(i-1,j-1)
+                dp[i][j]=recur(i-1,j-1)
+                return dp[i][j]
             else:
-                return min(1+recur(i-1,j-1),
+                dp[i][j]=min(1+recur(i-1,j-1),
                             1+recur(i,j-1),
                             1+recur(i-1,j))
+                return dp[i][j]
         return recur(n-1,m-1)
             
