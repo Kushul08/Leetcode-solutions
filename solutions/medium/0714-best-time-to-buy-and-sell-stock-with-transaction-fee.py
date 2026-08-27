@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0714. Best Time to Buy and Sell Stock with Transaction Fee
 #  Difficulty : Medium
-#  Runtime  : 232 ms
-#  Memory   : 30.1 MB
+#  Runtime  : 129 ms
+#  Memory   : 26.2 MB
 #  Solved   : 2026-08-27
 # ─────────────────────────────────────────────────
 
@@ -11,17 +11,19 @@ class Solution:
     def maxProfit(self, prices: List[int], fee: int) -> int:
         n=len(prices)
 
-        dp=[[0]*2 for _ in range(n+1)]
+        dp=[0]*2 
 
         for i in range(n-1,-1,-1):
+            temp=[0,0]
             for status in range(2):
                 if status==1:
-                    skip=dp[i+1][status]
-                    sell=dp[i+1][0]+prices[i]-fee
-                    dp[i][status]=max(skip,sell)
+                    skip=dp[status]
+                    sell=dp[0]+prices[i]-fee
+                    temp[status]=max(skip,sell)
                 else:
-                    skip=dp[i+1][status]
-                    buy=dp[i+1][1]-prices[i]
-                    dp[i][status]=max(skip,buy)
-        return dp[0][0]
+                    skip=dp[status]
+                    buy=dp[1]-prices[i]
+                    temp[status]=max(skip,buy)
+            dp=temp
+        return dp[0]
         
