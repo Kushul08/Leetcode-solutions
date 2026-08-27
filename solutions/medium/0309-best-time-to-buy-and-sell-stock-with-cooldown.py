@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0309. Best Time to Buy and Sell Stock with Cooldown
 #  Difficulty : Medium
-#  Runtime  : 7 ms
-#  Memory   : 26.1 MB
+#  Runtime  : 3 ms
+#  Memory   : 20.8 MB
 #  Solved   : 2026-08-27
 # ─────────────────────────────────────────────────
 
@@ -11,16 +11,20 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n=len(prices)
 
-        @lru_cache(None)
+        dp=[[-1]*2 for _ in range(n)]
         def recur(i,status):
             if i>=n:
                 return 0
+            if dp[i][status]!=-1:
+                return dp[i][status]
             if status==1:
                 skip=recur(i+1,status)
                 sell=recur(i+2,0)+prices[i]
-                return max(skip,sell)
+                dp[i][status]=max(skip,sell)
+                return dp[i][status]
             else:
                 skip=recur(i+1,status)
                 buy=recur(i+1,1)-prices[i]
-                return max(skip,buy)
+                dp[i][status]=max(skip,buy)
+                return dp[i][status]
         return recur(0,0)
