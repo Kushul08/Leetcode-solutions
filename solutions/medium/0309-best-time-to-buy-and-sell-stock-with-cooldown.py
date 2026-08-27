@@ -1,12 +1,11 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0309. Best Time to Buy and Sell Stock with Cooldown
 #  Difficulty : Medium
-#  Runtime  : 2 ms
-#  Memory   : 20 MB
+#  Runtime  : 1 ms
+#  Memory   : 19.7 MB
 #  Solved   : 2026-08-27
 # ─────────────────────────────────────────────────
 
-from functools import lru_cache
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n=len(prices)
