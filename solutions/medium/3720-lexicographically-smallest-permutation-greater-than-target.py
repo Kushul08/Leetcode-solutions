@@ -2,7 +2,7 @@
 #  Problem : 3720. Lexicographically Smallest Permutation Greater Than Target
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Memory   : 12.4 MB
 #  Solved   : 2026-08-27
 # ─────────────────────────────────────────────────
 
@@ -38,4 +38,18 @@ class Solution(object):
             if i==26: return ''
         if ans>target:
             return ans
+        j=n
+        while j>0:
+            j-=1
+
+            nums[ord(target[j])-97]+=1
+
+            for i in range(ord(target[j])-96,26):
+                if nums[i]>0:
+                    chars=''
+                    nums[i]-=1
+                    for k in range(26):
+                        if nums[k]>0:
+                            chars+=chr(k+97)*nums[k]
+                    return target[:j]+chr(i+97)+chars
         return ''
