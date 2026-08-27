@@ -1,12 +1,11 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0714. Best Time to Buy and Sell Stock with Transaction Fee
 #  Difficulty : Medium
-#  Runtime  : 69 ms
-#  Memory   : 26.1 MB
+#  Runtime  : 61 ms
+#  Memory   : 26 MB
 #  Solved   : 2026-08-27
 # ─────────────────────────────────────────────────
 
-from functools import lru_cache
 class Solution:
     def maxProfit(self, prices: List[int], fee: int) -> int:
         n=len(prices)
