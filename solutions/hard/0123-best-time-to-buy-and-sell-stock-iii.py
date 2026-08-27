@@ -1,18 +1,17 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0123. Best Time to Buy and Sell Stock III
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 1820 ms
+#  Memory   : 797.6 MB
 #  Solved   : 2026-08-27
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def maxProfit(self, prices):
-        """
-        :type prices: List[int]
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
         n=len(prices)
+
+        @lru_cache(None)
         def recur(i,status,buys):
             if i==n or buys==3:
                 return 0
