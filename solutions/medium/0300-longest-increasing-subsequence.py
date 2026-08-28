@@ -1,12 +1,11 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0300. Longest Increasing Subsequence
 #  Difficulty : Medium
-#  Runtime  : 2958 ms
-#  Memory   : 19.4 MB
+#  Runtime  : 2781 ms
+#  Memory   : 19.5 MB
 #  Solved   : 2026-08-28
 # ─────────────────────────────────────────────────
 
-from functools import lru_cache
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         n=len(nums)
