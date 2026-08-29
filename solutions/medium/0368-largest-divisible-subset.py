@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0368. Largest Divisible Subset
 #  Difficulty : Medium
-#  Runtime  : 311 ms
-#  Memory   : 12.5 MB
+#  Runtime  : 239 ms
+#  Memory   : 12.6 MB
 #  Solved   : 2026-08-29
 # ─────────────────────────────────────────────────
 
@@ -28,5 +28,4 @@ class Solution(object):
         while indx!=-1:
             ans.append(nums[indx])
             indx=hash[indx]
-        print(dp,hash)
         return ans
