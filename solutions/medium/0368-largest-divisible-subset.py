@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0368. Largest Divisible Subset
 #  Difficulty : Medium
-#  Runtime  : 472 ms
-#  Memory   : 12.6 MB
+#  Runtime  : 311 ms
+#  Memory   : 12.5 MB
 #  Solved   : 2026-08-29
 # ─────────────────────────────────────────────────
 
@@ -18,7 +18,7 @@ class Solution(object):
         hash=[-1]*n
         for i in range(1,n):
             for j in range(i):
-                if nums[i]%nums[j]==0 or nums[j]%nums[i]==0:
+                if nums[i]%nums[j]==0 :
                     if dp[i]<dp[j]+1:
                         dp[i]=dp[j]+1
                         hash[i]=j
