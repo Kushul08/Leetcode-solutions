@@ -1,25 +1,31 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1547. Minimum Cost to Cut a Stick
 #  Difficulty : Hard
-#  Runtime  : 663 ms
-#  Memory   : 34.6 MB
+#  Runtime  : 1160 ms
+#  Memory   : 13.8 MB
 #  Solved   : 2026-08-30
 # ─────────────────────────────────────────────────
 
-from functools import lru_cache
-class Solution:
-    def minCost(self, n: int, cuts: List[int]) -> int:
+class Solution(object):
+    def minCost(self, n, cuts):
+        """
+        :type n: int
+        :type cuts: List[int]
+        :rtype: int
+        """
         cuts.append(0)
         cuts.append(n)
         cuts.sort()
-
-        @lru_cache(None)
+        dp=[[-1]*(len(cuts)) for _ in range(len(cuts))]
         def mcm(i,j):
             if i>j:
                 return 0
+            if dp[i][j]!=-1:
+                return dp[i][j]
             mini=1e9
             for k in range(i,j+1):
                 steps=(cuts[j+1]-cuts[i-1])+mcm(i,k-1)+mcm(k+1,j)
                 mini=min(mini,steps)
-            return mini
+            dp[i][j]=mini
+            return dp[i][j]
         return mcm(1,len(cuts)-2)
