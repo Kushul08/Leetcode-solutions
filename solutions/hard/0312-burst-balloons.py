@@ -1,20 +1,18 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0312. Burst Balloons
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 19.4 MB
+#  Runtime  : 4009 ms
+#  Memory   : 48.9 MB
 #  Solved   : 2026-08-30
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def maxCoins(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def maxCoins(self, nums: List[int]) -> int:
         nums.insert(0,1)
         nums.append(1)
-        # print(nums)
+        
+        @lru_cache(None)
         def recur(i,j):
             if i>j:
                 return 0
