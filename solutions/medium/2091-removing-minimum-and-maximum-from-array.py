@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2091. Removing Minimum and Maximum From Array
 #  Difficulty : Medium
-#  Runtime  : 21 ms
-#  Memory   : 20.4 MB
+#  Runtime  : 43 ms
+#  Memory   : 21.9 MB
 #  Solved   : 2026-08-30
 # ─────────────────────────────────────────────────
 
@@ -13,8 +13,17 @@ class Solution(object):
         :rtype: int
         """
         n=len(nums)
-        min_indx=nums.index(min(nums))
-        max_indx=nums.index(max(nums))
+        min_indx=0
+        max_indx=0
+        mini=float('inf')
+        maxi=float('-inf')
+        for i in range(n):
+            if nums[i]<mini:
+                min_indx=i
+                mini=nums[i]
+            if nums[i]>maxi:
+                max_indx=i
+                maxi=nums[i]
         min_dels=float('inf')
 
         if min_indx<max_indx:
