@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1043. Partition Array for Maximum Sum
 #  Difficulty : Medium
-#  Runtime  : 1397 ms
-#  Memory   : 21.3 MB
+#  Runtime  : 183 ms
+#  Memory   : 21.1 MB
 #  Solved   : 2026-08-31
 # ─────────────────────────────────────────────────
 
@@ -15,8 +15,10 @@ class Solution:
             if i==n:
                 return 0
             maxi=-1e9
-            for j in range(i,i+min(k,n-i+1)):
-                steps=(max(arr[i:j+1])*(j-i+1))+recur(j+1)
+            max_val=-1e9
+            for j in range(i,min(i+k,n)):
+                max_val=max(max_val,arr[j])
+                steps=(max_val*(j-i+1))+recur(j+1)
                 maxi=max(maxi,steps)
             return maxi
         return recur(0)
