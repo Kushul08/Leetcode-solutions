@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0132. Palindrome Partitioning II
 #  Difficulty : Hard
-#  Runtime  : 3054 ms
-#  Memory   : 22.4 MB
+#  Runtime  : 3102 ms
+#  Memory   : 19.8 MB
 #  Solved   : 2026-08-31
 # ─────────────────────────────────────────────────
 
@@ -13,14 +13,17 @@ class Solution:
         if s==s[::-1]:
             return 0
         n=len(s)
-        @lru_cache(None)
+        dp=[-1]*n
         def recur(i):
             if i==n:
                 return -1
+            if dp[i]!=-1:
+                return dp[i]
             mini=1e9
             for k in range(i,n):
                 if (i==0 and s[:k+1]==s[k::-1]) or s[i:k+1]==s[k:i-1:-1] :
                     steps=1+recur(k+1)
                     mini=min(mini,steps)
-            return mini
+            dp[i]=mini
+            return dp[i]
         return recur(0)
