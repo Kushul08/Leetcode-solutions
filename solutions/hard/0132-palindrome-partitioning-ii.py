@@ -1,12 +1,11 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0132. Palindrome Partitioning II
 #  Difficulty : Hard
-#  Runtime  : 3102 ms
-#  Memory   : 19.8 MB
+#  Runtime  : 3045 ms
+#  Memory   : 20 MB
 #  Solved   : 2026-08-31
 # ─────────────────────────────────────────────────
 
-from functools import lru_cache
 class Solution:
     def minCut(self, s: str) -> int:
         
