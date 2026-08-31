@@ -1,19 +1,16 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1043. Partition Array for Maximum Sum
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.3 MB
+#  Runtime  : 1397 ms
+#  Memory   : 21.3 MB
 #  Solved   : 2026-08-31
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def maxSumAfterPartitioning(self, arr, k):
-        """
-        :type arr: List[int]
-        :type k: int
-        :rtype: int
-        """
+from functools import lru_cache
+class Solution:
+    def maxSumAfterPartitioning(self, arr: List[int], k: int) -> int:
         n=len(arr)
+        @lru_cache(None)
         def recur(i):
             if i==n:
                 return 0
