@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1043. Partition Array for Maximum Sum
 #  Difficulty : Medium
-#  Runtime  : 2275 ms
-#  Memory   : 16.4 MB
+#  Runtime  : 2271 ms
+#  Memory   : 12.4 MB
 #  Solved   : 2026-08-31
 # ─────────────────────────────────────────────────
 
@@ -14,18 +14,14 @@ class Solution(object):
         :rtype: int
         """
         n=len(arr)
-        dp=[-1]*(n)
-        def recur(i):
-            if i==n:
-                return 0
-            if dp[i]!=-1:
-                return dp[i]
+        dp=[0]*(n+1)
+        for i in range(n-1,-1,-1):
             maxi=-1e9
             max_val=-1e9
             for j in range(i,min(i+k,n)):
                 max_val=max(max_val,arr[j])
-                steps=(max(arr[i:j+1])*(j-i+1))+recur(j+1)
+                steps=(max(arr[i:j+1])*(j-i+1))+dp[j+1]
                 maxi=max(maxi,steps)
             dp[i]=maxi
-            return dp[i]
-        return recur(0)
+        return dp[0]
+        
