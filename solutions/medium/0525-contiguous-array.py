@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0525. Contiguous Array
 #  Difficulty : Medium
-#  Runtime  : 113 ms
-#  Memory   : 15.8 MB
+#  Runtime  : 102 ms
+#  Memory   : 16.7 MB
 #  Solved   : 2026-09-01
 # ─────────────────────────────────────────────────
 
@@ -14,10 +14,10 @@ class Solution(object):
         """
         n=len(nums)
         ans=0
-        l=r=0
+        l=0
         max_len=0
         hashmap={0:-1}
-        while r<n:
+        for r in range(n):
             if nums[r]==0:
                 ans+=-1
             else:
@@ -26,5 +26,4 @@ class Solution(object):
                 max_len=max(max_len,r-hashmap[ans])
             else:
                 hashmap[ans]=r
-            r+=1
         return max_len
