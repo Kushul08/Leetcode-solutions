@@ -1,61 +1,55 @@
 # ─────────────────────────────────────────────────
 #  Problem : 3568. Minimum Moves to Clean the Classroom
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 19.6 MB
+#  Runtime  : 1725 ms
+#  Memory   : 25.3 MB
 #  Solved   : 2026-09-01
 # ─────────────────────────────────────────────────
 
-from collections import deque
-class Solution(object):
-    def minMoves(self, classroom, energy):
-        """
-        :type classroom: List[str]
-        :type energy: int
-        :rtype: int
-        """
-        n,m=len(classroom),len(classroom[0])
-        start=None
-        l=0
-        l_ids={}
+class Solution:
+    def minMoves(self, classroom: List[str], energy: int) -> int:
+        dx = [0, 1, 0, -1]
+        dy = [1, 0, -1, 0]
+        m = len(classroom)
+        n = len(classroom[0])
+        id = [[0] * n for _ in range(m)]
+        sx = sy = 0
+        cnt = 0
+        for i in range(m):
+            for j in range(n):
+                if classroom[i][j] == "S":
+                    sx, sy = i, j
+                elif classroom[i][j] == "L":
+                    id[i][j] = 1 << cnt
+                    cnt += 1
 
-        for i in range(len(classroom)):
-            for j in range(len(classroom[i])):
-                if classroom[i][j]=='S':
-                    start=(i,j)
-                elif classroom[i][j]=='L':
-                    l_ids[(i,j)]=l
-                    l+=1
-        x,y=start
-        directions=[(-1,0),(1,0),(0,1),(0,-1)]
-        
-        target_mask = (1 << l) - 1
-
-        queue=deque([(x,y,energy,0,0)])
-
-        seen=set()
-        seen.add((x,y,energy,0))
-        while queue:
-            fx,fy,e,masks,moves=queue.popleft()
-
-            if masks==target_mask:
-                return moves
-            if e==0:
+        full = 1 << cnt
+        bestEnergy = [
+            [[-1 for _ in range(full)] for _ in range(n)] for _ in range(m)
+        ]
+        bestEnergy[sx][sy][0] = energy
+        Info = collections.deque()
+        Info.append((sx, sy, 0, energy, 0))
+        while Info:
+            x, y, mask, e, steps = Info.popleft()
+            if mask == full - 1:
+                return steps
+            if e == 0:
                 continue
-            for dx,dy in directions:
-                nx,ny=fx+dx,fy+dy
-                if 0<=nx<n and 0<=ny<m and classroom[nx][ny]!='X':
-                    next_mask=masks
-                    ener=e-1
-                    if classroom[nx][ny]=='L':
-                        l_id=l_ids[(nx,ny)]
-                        next_mask |= (1 << l_id)
-                    elif classroom[nx][ny]=='R':
-                        ener=energy
-                    state=(nx,ny,ener,next_mask)
-
-                    if state not in seen:
-                        seen.add(state)
-                        queue.append((nx,ny,ener,next_mask,moves+1))
+            for d in range(4):
+                nx = x + dx[d]
+                ny = y + dy[d]
+                if (
+                    nx < 0
+                    or nx >= m
+                    or ny < 0
+                    or ny >= n
+                    or classroom[nx][ny] == "X"
+                ):
+                    continue
+                ne = energy if classroom[nx][ny] == "R" else e - 1
+                nmask = mask | id[nx][ny]
+                if ne > bestEnergy[nx][ny][nmask]:
+                    bestEnergy[nx][ny][nmask] = ne
+                    Info.append((nx, ny, nmask, ne, steps + 1))
         return -1
-        
