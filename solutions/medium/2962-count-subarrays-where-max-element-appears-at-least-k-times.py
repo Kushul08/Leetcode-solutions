@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2962. Count Subarrays Where Max Element Appears at Least K Times
 #  Difficulty : Medium
-#  Runtime  : 249 ms
-#  Memory   : 32.3 MB
+#  Runtime  : 247 ms
+#  Memory   : 32.2 MB
 #  Solved   : 2026-09-01
 # ─────────────────────────────────────────────────
 
@@ -13,16 +13,15 @@ class Solution:
         freq=nums.count(max_val)
         
         def recur(k):
-            l=r=0
+            l=0
             ans=0
             count=0
-            while r<n:
+            for r in range(n):
                 ans+=1 if nums[r]==max_val else 0
                 while ans>k:
                     ans-=1 if nums[l]==max_val else 0
                     l+=1
                 if ans<=k:
                     count+=(r-l+1)
-                r+=1
             return count
         return recur(freq)-recur(k-1)
