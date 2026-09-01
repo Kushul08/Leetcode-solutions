@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0560. Subarray Sum Equals K
 #  Difficulty : Medium
-#  Runtime  : 41 ms
-#  Memory   : 22.1 MB
+#  Runtime  : 42 ms
+#  Memory   : 23.8 MB
 #  Solved   : 2026-09-01
 # ─────────────────────────────────────────────────
 
@@ -13,13 +13,11 @@ class Solution:
         hashmap=defaultdict(int)
         hashmap[0]=1
         count=0
-        l=r=0
+        l=0
         ans=0
-        while r<n:
+        for r in range(n):
             ans+=nums[r]
             needed=ans-k
-            if needed in hashmap:
-                count+=hashmap[needed] 
+            count+=hashmap[needed] #defaultdicts check is key is absence asigns it to 0
             hashmap[ans]+=1
-            r+=1
         return count
