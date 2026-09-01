@@ -2,7 +2,7 @@
 #  Problem : 0283. Move Zeroes
 #  Difficulty : Easy
 #  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Memory   : 13.7 MB
 #  Solved   : 2026-09-01
 # ─────────────────────────────────────────────────
 
@@ -12,9 +12,10 @@ class Solution(object):
         :type nums: List[int]
         :rtype: None Do not return anything, modify nums in-place instead.
         """
+        if 0 not in nums: return
         zero=nums.index(0)
         for non_zero in range(len(nums)):
-            if nums[non_zero]!=0:
+            if nums[non_zero]!=0 and zero<non_zero:
                 nums[zero],nums[non_zero]=nums[non_zero],nums[zero]
                 while zero<len(nums) and nums[zero]!=0:
                     zero+=1
