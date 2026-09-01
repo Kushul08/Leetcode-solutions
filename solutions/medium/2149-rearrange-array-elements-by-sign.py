@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 2149. Rearrange Array Elements by Sign
 #  Difficulty : Medium
-#  Runtime  : 149 ms
-#  Memory   : 49.4 MB
+#  Runtime  : 47 ms
+#  Memory   : 42.3 MB
 #  Solved   : 2026-09-01
 # ─────────────────────────────────────────────────
 
@@ -12,20 +12,14 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        positive=[]
-        negative=[]
+        pos=0
+        neg=1
+        ans=[0]*(len(nums))
         for num in nums:
             if num<0:
-                negative.append(num)
+                ans[neg]=num
+                neg+=2
             else:
-                positive.append(num)
-        ans=[]
-        pos=neg=0
-        for i in range(len(nums)):
-            if i%2==0:
-                ans.append(positive[pos])
-                pos+=1
-            else:
-                ans.append(negative[neg])
-                neg+=1
+                ans[pos]=num
+                pos+=2
         return ans
