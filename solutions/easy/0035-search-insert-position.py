@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0035. Search Insert Position
 #  Difficulty : Easy
-#  Runtime  : 2 ms
-#  Memory   : 19.9 MB
+#  Runtime  : 0 ms
+#  Memory   : 20 MB
 #  Solved   : 2026-09-02
 # ─────────────────────────────────────────────────
 
@@ -15,7 +15,7 @@ class Solution:
         while low<=high:
             mid=(low+high)>>1
             if nums[mid]>=target:
-                high-=1
+                high=mid-1
             else:
-                low+=1
+                low=mid+1
         return low
