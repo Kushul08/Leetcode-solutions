@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0015. 3Sum
 #  Difficulty : Medium
-#  Runtime  : 3264 ms
-#  Memory   : 18.1 MB
+#  Runtime  : 1855 ms
+#  Memory   : 18 MB
 #  Solved   : 2026-09-02
 # ─────────────────────────────────────────────────
 
@@ -58,10 +58,10 @@ class Solution(object):
                     k-=1
                 else:
                     result.add(tuple([nums[i],nums[j],nums[k]]))
-                    # while j<k and nums[j]==nums[j+1]:
-                    #     j+=1
+                    while j<k and nums[j]==nums[j+1]:
+                        j+=1
                     j+=1
-                    # while j<k and nums[k]==nums[k-1]:
-                    #     k-=1
+                    while j<k and nums[k]==nums[k-1]:
+                        k-=1
                     k-=1
         return list(result)
