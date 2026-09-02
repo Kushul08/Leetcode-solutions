@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0018. 4Sum
 #  Difficulty : Medium
-#  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Runtime  : 991 ms
+#  Memory   : 12.3 MB
 #  Solved   : 2026-09-02
 # ─────────────────────────────────────────────────
 
@@ -16,8 +16,8 @@ class Solution(object):
         nums.sort()
         n=len(nums)
         result=set()
-        for i in range(n-4):
-            for j in range(i+1,n-3):
+        for i in range(n-3):
+            for j in range(i+1,n-2):
                 k=j+1
                 l=n-1
                 while k<l:
