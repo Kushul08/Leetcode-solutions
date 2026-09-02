@@ -15,9 +15,9 @@ class Solution(object):
         n,m=len(matrix),len(matrix[0])
         result=[]
         top=0
-        bottom=m-1
+        bottom=n-1
         left=0
-        right=n-1
+        right=m-1
         while left<=right and top<=bottom:
             for i in range(left,right+1):
                 result.append(matrix[top][i])
