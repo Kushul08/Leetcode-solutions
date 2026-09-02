@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0015. 3Sum
 #  Difficulty : Medium
-#  Runtime  : 1861 ms
+#  Runtime  : 3264 ms
 #  Memory   : 18.1 MB
-#  Solved   : 2026-05-12
+#  Solved   : 2026-09-02
 # ─────────────────────────────────────────────────
 
 class Solution(object):
@@ -48,7 +48,7 @@ class Solution(object):
         nums.sort()
         result=set()
 
-        for i in range(len(nums)-1):
+        for i in range(len(nums)-2):
             j=i+1
             k=len(nums)-1
             while j<k :
@@ -58,10 +58,10 @@ class Solution(object):
                     k-=1
                 else:
                     result.add(tuple([nums[i],nums[j],nums[k]]))
-                    while j<k and nums[j]==nums[j+1]:
-                        j+=1
+                    # while j<k and nums[j]==nums[j+1]:
+                    #     j+=1
                     j+=1
-                    while j<k and nums[k]==nums[k-1]:
-                        k-=1
+                    # while j<k and nums[k]==nums[k-1]:
+                    #     k-=1
                     k-=1
         return list(result)
