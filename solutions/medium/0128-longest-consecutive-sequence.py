@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0128. Longest Consecutive Sequence
 #  Difficulty : Medium
-#  Runtime  : 50 ms
-#  Memory   : 36.5 MB
+#  Runtime  : 19 ms
+#  Memory   : 32.3 MB
 #  Solved   : 2026-09-02
 # ─────────────────────────────────────────────────
 
@@ -12,7 +12,7 @@ class Solution:
             return 0
         nums_set=set(nums)
         max_len=1
-        for num in nums_set:
+        for num in nums:
             if (num+1) not in nums_set:
                 length=1
                 val=num
