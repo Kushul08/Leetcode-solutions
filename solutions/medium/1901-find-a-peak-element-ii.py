@@ -2,7 +2,7 @@
 #  Problem : 1901. Find a Peak Element II
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.4 MB
+#  Memory   : 33.5 MB
 #  Solved   : 2026-09-03
 # ─────────────────────────────────────────────────
 
@@ -36,4 +36,4 @@ class Solution(object):
             elif peak>left_val and peak<right_val:
                 low=col+1
             else:
-                high=mid-1
+                high=col-1
