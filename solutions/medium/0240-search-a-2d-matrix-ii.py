@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0240. Search a 2D Matrix II
 #  Difficulty : Medium
-#  Runtime  : 15 ms
-#  Memory   : 12.2 MB
+#  Runtime  : 127 ms
+#  Memory   : 18.5 MB
 #  Solved   : 2026-09-03
 # ─────────────────────────────────────────────────
 
@@ -13,31 +13,15 @@ class Solution(object):
         :type target: int
         :rtype: bool
         """
-        n,m=len(matrix),len(matrix[0])
-        low=0
-        high=m-1
+        row=0
+        col=len(matrix[0])-1
 
-        while low<=high:
-            mid=(low+high)>>1
-            print(low,high,mid)
-
-            if matrix[0][mid]==target:
+        while row<len(matrix) and col>=0:
+            if matrix[row][col]==target:
                 return True
-            elif matrix[0][mid]>target:
-                high=mid-1
+            elif matrix[row][col]<target:
+                row+=1
             else:
-                low=mid+1
-        col=high
-        low=0
-        high=n-1
-
-        while low<=high:
-            mid=(low+high)>>1
-
-            if matrix[mid][col]==target:
-                return True
-            elif matrix[mid][col]>target:
-                high=mid-1
-            else:
-                low=mid+1
+                col-=1
         return False
+            
