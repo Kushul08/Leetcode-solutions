@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1091. Shortest Path in Binary Matrix
 #  Difficulty : Medium
-#  Runtime  : 339 ms
-#  Memory   : 12.6 MB
-#  Solved   : 2026-06-25
+#  Runtime  : 338 ms
+#  Memory   : 12.7 MB
+#  Solved   : 2026-09-04
 # ─────────────────────────────────────────────────
 
 from collections import deque
@@ -32,7 +32,7 @@ class Solution(object):
                     if grid[nx][ny]==0 and dis[nx][ny]==float('inf'):
                         if nx==n-1 and ny==n-1:
                             return dis[x][y]+1
-                        dis[nx][ny]=dis[x][y]+1
+                        dis[nx][ny]=d+1
                         queue.append((dis[nx][ny],nx,ny))
         return -1
             
