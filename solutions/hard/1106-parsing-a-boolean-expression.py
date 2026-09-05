@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1106. Parsing A Boolean Expression
 #  Difficulty : Hard
-#  Runtime  : 43 ms
+#  Runtime  : 37 ms
 #  Memory   : 12.5 MB
-#  Solved   : 2026-08-31
+#  Solved   : 2026-09-05
 # ─────────────────────────────────────────────────
 
 class Solution(object):
@@ -13,12 +13,9 @@ class Solution(object):
         :rtype: bool
         """
         stack=[]
-        curr=None
         for ch in expression:
             if ch in '&|!':
                 stack.append(ch)
-                if ch!='(':
-                    curr=ch
             elif ch in 'tf':
                 stack.append(True if ch=='t' else False)
             elif ch==')':
