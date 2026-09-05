@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1976. Number of Ways to Arrive at Destination
 #  Difficulty : Medium
-#  Runtime  : 27 ms
-#  Memory   : 19.3 MB
-#  Solved   : 2026-06-26
+#  Runtime  : 25 ms
+#  Memory   : 19.6 MB
+#  Solved   : 2026-09-05
 # ─────────────────────────────────────────────────
 
 from heapq import heappush, heappop
