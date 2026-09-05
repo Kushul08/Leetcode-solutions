@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance
 #  Difficulty : Medium
-#  Runtime  : 292 ms
+#  Runtime  : 280 ms
 #  Memory   : 13.4 MB
-#  Solved   : 2026-06-29
+#  Solved   : 2026-09-05
 # ─────────────────────────────────────────────────
 
 from heapq import heappush, heappop
