@@ -1,9 +1,9 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0787. Cheapest Flights Within K Stops
 #  Difficulty : Medium
-#  Runtime  : 19 ms
-#  Memory   : 13.3 MB
-#  Solved   : 2026-06-26
+#  Runtime  : 3 ms
+#  Memory   : 13.4 MB
+#  Solved   : 2026-09-05
 # ─────────────────────────────────────────────────
 
 from collections import deque
@@ -17,23 +17,22 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        queue=deque()
         adj_list=[[] for _ in range(n)]
         for n1,n2,cost in flights:
             adj_list[n1].append((n2,cost))
-        
-        queue.append((0,src,0))
-        dis=[float('inf')]*n
-        dis[src]=0
+
+        costs=[float('inf')]*n
+        costs[src]=0
+        queue=deque([(0,src,0)])
+
         while queue:
-            steps,node,cost=queue.popleft()
-            print(steps,node,cost)
-            if steps>k+1:
+            cost,node,steps=queue.popleft()
+            if steps>=k+1:
                 continue
             for neigh,weight in adj_list[node]:
-                if cost+weight<dis[neigh] and steps<=k:
-                    dis[neigh]=cost+weight
-                    queue.append((steps+1,neigh,dis[neigh]))
-        if dis[dst]==float('inf'):
-            return -1
-        return dis[dst]
+                if cost+weight<costs[neigh]:
+                    costs[neigh]=min(costs[neigh],cost+weight)
+                    queue.append((costs[neigh],neigh,steps+1))
+        if costs[dst]!=float('inf'):
+            return costs[dst]
+        return -1
