@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0940. Distinct Subsequences II
 #  Difficulty : Hard
-#  Runtime  : 0 ms
-#  Memory   : 19.4 MB
+#  Runtime  : 14 ms
+#  Memory   : 12.5 MB
 #  Solved   : 2026-09-07
 # ─────────────────────────────────────────────────
 
@@ -12,14 +12,12 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        n=len(s)
-        hashset=set()
+        dp=[1]
         MOD=int(1e9+7)
-        def recur(i,string):
-            if i==n:
-                hashset.add(string)
-                return
-            recur(i+1,string)
-            recur(i+1,string+s[i])
-        recur(0,'')
-        return (len(hashset)-1)%MOD
+        seen={}
+        for i,ch in enumerate(s):
+            dp.append((dp[-1]*2)%MOD)
+            if ch in seen:
+                dp[-1]-=dp[seen[ch]]
+            seen[ch]=i
+        return (dp[-1]-1)%MOD
