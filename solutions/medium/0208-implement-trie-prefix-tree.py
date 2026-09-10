@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0208. Implement Trie (Prefix Tree)
 #  Difficulty : Medium
-#  Runtime  : 205 ms
-#  Memory   : 39.2 MB
+#  Runtime  : 186 ms
+#  Memory   : 39.4 MB
 #  Solved   : 2026-09-10
 # ─────────────────────────────────────────────────
 
@@ -20,13 +20,13 @@ class Trie(object):
         :rtype: None
         """
         node=self.root
-        for i in range(len(word)):
-            if node.links[ord(word[i])-97]==0:
+        for ch in word:
+            if node.links[ord(ch)-97]==0:
                 newnode=Node()
-                node.links[ord(word[i])-97]=newnode
+                node.links[ord(ch)-97]=newnode
                 node=newnode
             else:
-                node=node.links[ord(word[i])-97]
+                node=node.links[ord(ch)-97]
         node.flag=True
     def search(self, word):
         """
@@ -34,13 +34,11 @@ class Trie(object):
         :rtype: bool
         """
         node=self.root
-        for i in range(len(word)):
-            if node.links[ord(word[i])-97]==0:
+        for ch in word:
+            if node.links[ord(ch)-97]==0:
                 return False
-            node=node.links[ord(word[i])-97]
-        if node.flag==True:
-            return True
-        return False
+            node=node.links[ord(ch)-97]
+        return node.flag
 
     def startsWith(self, prefix):
         """
@@ -48,10 +46,10 @@ class Trie(object):
         :rtype: bool
         """
         node=self.root
-        for i in range(len(prefix)):
-            if node.links[ord(prefix[i])-97]==0:
+        for ch in prefix:
+            if node.links[ord(ch)-97]==0:
                 return False
-            node=node.links[ord(prefix[i])-97]
+            node=node.links[ord(ch)-97]
         return True
 # Your Trie object will be instantiated and called as such:
 # obj = Trie()
