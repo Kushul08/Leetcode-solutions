@@ -1,0 +1,11 @@
+// ─────────────────────────────────────────────────
+//  Problem : 1683. Invalid Tweets
+//  Difficulty : Easy
+//  Runtime  : 739 ms
+//  Memory   : 0B
+//  Solved   : 2026-09-12
+// ─────────────────────────────────────────────────
+
+# Write your MySQL query statement below
+
+select tweet_id  from Tweets where LENGTH(content)>15
