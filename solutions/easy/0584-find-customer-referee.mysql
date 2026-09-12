@@ -1,0 +1,10 @@
+// ─────────────────────────────────────────────────
+//  Problem : 0584. Find Customer Referee
+//  Difficulty : Easy
+//  Runtime  : 502 ms
+//  Memory   : 0B
+//  Solved   : 2026-09-12
+// ─────────────────────────────────────────────────
+
+# Write your MySQL query statement below
+select name from Customer where referee_id!=2 or referee_id is null;
