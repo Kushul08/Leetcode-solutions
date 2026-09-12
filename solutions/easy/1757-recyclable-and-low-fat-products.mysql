@@ -1,0 +1,10 @@
+// ─────────────────────────────────────────────────
+//  Problem : 1757. Recyclable and Low Fat Products
+//  Difficulty : Easy
+//  Runtime  : 556 ms
+//  Memory   : 0B
+//  Solved   : 2026-09-12
+// ─────────────────────────────────────────────────
+
+# Write your MySQL query statement below
+select product_id from Products where low_fats='Y' and recyclable='Y'
