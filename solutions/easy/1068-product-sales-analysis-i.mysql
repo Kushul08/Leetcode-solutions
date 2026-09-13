@@ -1,11 +1,13 @@
 // ─────────────────────────────────────────────────
 //  Problem : 1068. Product Sales Analysis I
 //  Difficulty : Easy
-//  Runtime  : 1498 ms
+//  Runtime  : 1545 ms
 //  Memory   : 0B
 //  Solved   : 2026-09-13
 // ─────────────────────────────────────────────────
 
 # Write your MySQL query statement below
 
-SELECT P.product_name, S.year , S.price from Sales S, Product P WHERE P.product_id=S.product_id
+SELECT P.product_name, S.year, S.price 
+from Sales S JOIN Product P ON
+S.product_id=P.product_id
