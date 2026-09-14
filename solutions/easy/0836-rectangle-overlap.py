@@ -2,7 +2,7 @@
 #  Problem : 0836. Rectangle Overlap
 #  Difficulty : Easy
 #  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Memory   : 12.4 MB
 #  Solved   : 2026-09-14
 # ─────────────────────────────────────────────────
 
@@ -13,10 +13,9 @@ class Solution(object):
         :type rec2: List[int]
         :rtype: bool
         """
-        x1,x2=rec1[0],rec1[2]
-        y1,y2=rec1[1],rec1[3]
-        nx,ny=rec2[0],rec2[1]
+        x1,y1,x2,y2=rec1
+        x3,y3,x4,y4=rec2
 
-        if x1<nx<x2 or y1<ny<y2:
-            return True
-        return False
+        if x4<=x1 or x2<=x3 or y3>=y2 or y1>=y4:
+            return False
+        return True
