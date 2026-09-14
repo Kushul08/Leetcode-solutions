@@ -1,0 +1,11 @@
+// ─────────────────────────────────────────────────
+//  Problem : 0620. Not Boring Movies
+//  Difficulty : Easy
+//  Runtime  : 260 ms
+//  Memory   : 0B
+//  Solved   : 2026-09-14
+// ─────────────────────────────────────────────────
+
+# Write your MySQL query statement below
+
+select id,movie,description,rating from Cinema where id%2=1 and description!='boring' ORDER BY rating desc;
