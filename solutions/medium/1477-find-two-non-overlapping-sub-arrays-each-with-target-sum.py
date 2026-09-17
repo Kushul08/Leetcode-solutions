@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1477. Find Two Non-overlapping Sub-arrays Each With Target Sum
 #  Difficulty : Medium
-#  Runtime  : 0 ms
+#  Runtime  : 4 ms
 #  Memory   : 12.4 MB
 #  Solved   : 2026-09-17
 # ─────────────────────────────────────────────────
@@ -16,7 +16,8 @@ class Solution(object):
         n=len(arr)
         min1=-1
         min2=-1
-        for i in range(n):
+        i=0
+        while i<n:
             sums=0
             for j in range(i,n):
                 sums+=arr[j] 
@@ -31,6 +32,10 @@ class Solution(object):
                             min1=length
                         elif min2>length:
                             min2=length
+                    break
+                elif sums>target:
+                    break
+            i=j+1
         if min1!=-1 and min2!=-1:
             return min1+min2
         return -1
