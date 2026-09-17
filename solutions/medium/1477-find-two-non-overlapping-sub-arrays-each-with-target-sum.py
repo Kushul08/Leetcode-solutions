@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1477. Find Two Non-overlapping Sub-arrays Each With Target Sum
 #  Difficulty : Medium
-#  Runtime  : 4 ms
+#  Runtime  : 0 ms
 #  Memory   : 12.4 MB
 #  Solved   : 2026-09-17
 # ─────────────────────────────────────────────────
@@ -32,10 +32,11 @@ class Solution(object):
                             min1=length
                         elif min2>length:
                             min2=length
+                    i=j
                     break
                 elif sums>target:
                     break
-            i=j+1
+            i+=1
         if min1!=-1 and min2!=-1:
             return min1+min2
         return -1
