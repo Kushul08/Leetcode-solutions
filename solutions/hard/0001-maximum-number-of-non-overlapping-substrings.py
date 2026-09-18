@@ -1,48 +1,33 @@
 # ─────────────────────────────────────────────────
 #  Problem : 0001. Maximum Number of Non-Overlapping Substrings
 #  Difficulty : Hard
-#  Runtime  : 295 ms
-#  Memory   : 13.2 MB
-#  Solved   : 2026-07-22
+#  Runtime  : 0 ms
+#  Memory   : 19.5 MB
+#  Solved   : 2026-09-18
 # ─────────────────────────────────────────────────
 
-class Solution(object):
-    def maxNumOfSubstrings(self, s):
-        """
-        :type s: str
-        :rtype: List[str]
-        """
-        hashmap={}
+from collections import Counter
+class Solution:
+    def maxNumOfSubstrings(self, s: str) -> list[str]:
+        
+        start=[-1]*26
+        end=[-1]*26
+        hashmap=Counter(s)
         for i,ch in enumerate(s):
-            if ch in hashmap:
-                hashmap[ch][1]=i
-            else:
-                hashmap[ch]=[i,i]
-        def getInterval(ch):
-            L = hashmap[ch][0]
-            R = hashmap[ch][1]
-            i = L
-            while i <= R:
-                c = s[i]
-                if hashmap[c][0]< L:
-                    return None     
-                R = max(R, hashmap[c][1])
-                i += 1
-            return (L, R)
-        intervals=[]
+            if start[ord(ch)-97]==-1:
+                start[ord(ch)-97]=i
+                end[ord(ch)-97]=i
+            end[ord(ch)-97]=i
+        nums=[]
         for ch in hashmap:
-            interval=getInterval(ch)
-            if interval is not None:
-                intervals.append(interval)
-        # Now the problem simplifies to max no of intervals which are non overlapping
-        intervals=sorted(intervals, key=lambda item:item[1])
-        max_intervals=[]
-        current=-1
-        for a,b in intervals:
-            if a>current:
-                max_intervals.append([a,b])
-                current=b
-        substrings=[]
-        for a,b in max_intervals:
-            substrings.append(s[a:b+1])
-        return substrings
+            nums.append([start[ord(ch)-97],end[ord(ch)-97]])
+        nums.sort(key=lambda item:item[1])
+
+        prev=-1
+        ans=[]
+        for first,second in nums:
+            if first>prev:
+                string=s[first:second+1]
+                ans.append(string)
+                prev=second
+        return ans
