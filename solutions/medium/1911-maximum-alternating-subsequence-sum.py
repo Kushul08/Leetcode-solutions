@@ -1,8 +1,8 @@
 # ─────────────────────────────────────────────────
 #  Problem : 1911. Maximum Alternating Subsequence Sum
 #  Difficulty : Medium
-#  Runtime  : 998 ms
-#  Memory   : 37.5 MB
+#  Runtime  : 867 ms
+#  Memory   : 33.7 MB
 #  Solved   : 2026-10-05
 # ─────────────────────────────────────────────────
 
@@ -10,15 +10,16 @@ class Solution:
     def maxAlternatingSum(self, nums: List[int]) -> int:
         n=len(nums)
 
-        dp=[[0]*2 for _ in range(n+1)]
+        dp=[0]*2
         for i in range(n-1,-1,-1):
+            temp=[0,0]
             for sign in (0,1):
-                skip=dp[i+1][sign]
+                skip=dp[sign]
                 if sign%2==0:
-                    take=dp[i+1][1]+nums[i]
+                    take=dp[1]+nums[i]
                 else:
-                    take=dp[i+1][0]-nums[i]
+                    take=dp[0]-nums[i]
 
-                dp[i][sign]=max(skip,take)
-                
-        return dp[0][0]
+                temp[sign]=max(skip,take)
+            dp=temp
+        return dp[0]
