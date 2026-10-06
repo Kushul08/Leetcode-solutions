@@ -2,7 +2,7 @@
 #  Problem : 0921. Minimum Add to Make Parentheses Valid
 #  Difficulty : Medium
 #  Runtime  : 0 ms
-#  Memory   : 12.5 MB
+#  Memory   : 12.3 MB
 #  Solved   : 2026-10-06
 # ─────────────────────────────────────────────────
 
@@ -12,13 +12,15 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        stack=[]
+        open=0
+        close=0
         for ch in s:
             if ch=='(':
-                stack.append(ch)
+                open+=1
             else:
-                if stack and stack[-1]=='(':
-                    stack.pop()
+                if open>0:
+                    open-=1
                 else:
-                    stack.append(')')
-        return len(stack)
+                    close+=1
+
+        return open+close
